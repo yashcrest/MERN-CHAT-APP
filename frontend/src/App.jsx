@@ -1,13 +1,12 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Pages/Login";
-
+import { Login, Register } from "./components/Pages";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/path" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </Router>
   );
