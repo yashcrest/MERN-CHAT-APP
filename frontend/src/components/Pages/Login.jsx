@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 const Login = () => {
+  const [fields, setFields] = useState();
   return (
     <>
       <form className="login-form">
