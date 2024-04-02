@@ -4,8 +4,8 @@ const Login = () => {
   const [fields, setFields] = useState();
   return (
     <>
-      <form className="login-form">
-        <h1>Log In to your account</h1>
+      <form className="login-form flex">
+        <h1 className="">Log In to your account</h1>
         <label>Email address:</label>
         <input type="text" name="" />
         <label>Password:</label>
