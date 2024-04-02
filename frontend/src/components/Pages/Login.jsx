@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <>
       <form className="login-form">
-        <h1>Log In</h1>
+        <h1>Log In to your account</h1>
         <label>Email address:</label>
         <input type="text" name="" />
         <label>Password:</label>

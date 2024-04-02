@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login, Register, Chat } from "./components/Pages";
