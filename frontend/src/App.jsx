@@ -1,4 +1,4 @@
-import "./index.css";
+import "./styles.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login, Register, Chat } from "./components/Pages";
