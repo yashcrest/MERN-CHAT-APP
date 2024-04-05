@@ -1,10 +1,13 @@
 import React from "react";
 
 const register = () => {
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen">
+        {/* form */}
         <form onSubmit={handleSubmit} className="flex flex-col form-item">
           <h1 className="text-4xl">Register a new Account</h1>
           <label htmlFor="username">Username:</label>
