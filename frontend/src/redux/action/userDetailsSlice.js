@@ -2,31 +2,61 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const serverPort = "3000";
+const serverBaseURL = `http://localhost:${serverPort}`;
+
 //function to call backend api to store new users data
 export const registerUser = createAsyncThunk(
-  "user/registerUser",
-  async (userData, { rejectWithValue }) => {
+  "userDetail/registerUser",
+  //sending data to backend
+  async (userData) => {
     try {
-      const response = await axios.post("api/register", userData);
+      const response = await axios.post(
+        `${serverBaseURL}/api/register`,
+        userData
+      );
       return response.data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      console.log(err);
     }
   }
 );
 
-//this is the initial state of users from reg form
+//initial state of users from reg form
 const initialState = {
-  username: null,
-  email: null,
-  password: null,
+  username: {},
+  loading: false,
+  isLoggedIn: false,
+  error: null,
 };
 
+//creating slice object
 export const userDetailsSlice = createSlice({
   name: "user",
   initialState,
   //now i need to figure out what reducers are needed
   reducers: {},
+  //   reducers for aysncThunk
+  extraReducers: (builder) => {
+    builder
+      // when api call to the backend is sucessfull
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.username = action.payload.username;
+        state.email = action.payload.email;
+        state.loading = false;
+        state.isLoggedIn = true;
+      })
+      // when api call is still pending
+      .addCase(registerUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      //when api call is failed
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.isLoggedIn = false;
+        state.error = action.payload.error;
+      });
+  },
 });
 
 //all the reducers - methods to be exported from here to be used in other components
