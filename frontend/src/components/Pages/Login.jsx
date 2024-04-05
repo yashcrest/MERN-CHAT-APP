@@ -15,7 +15,9 @@ const Login = () => {
           <button>Log In</button>
           {/* routing to register page with Link tag */}
           <span>
-            <Link to="/register">Create an Account.</Link>
+            <Link to="/register" className="input-btn">
+              Create an Account.
+            </Link>
           </span>
         </div>
       </form>

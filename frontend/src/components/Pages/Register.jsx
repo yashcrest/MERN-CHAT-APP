@@ -24,3 +24,9 @@ const register = () => {
 };
 
 export default register;
+
+/* 
+To do:
+1. need to figure out how to send out users data and save it
+2. how to validate form
+*/
