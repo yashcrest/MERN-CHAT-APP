@@ -1,12 +1,17 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const serverAddress = "http://localhost";
+const cors = require("cors");
+//middleware
+app.use(express.json());
+app.use(cors());
+//post request
 app.post("/api/register", (req, res) => {
-  res.send("All good, data is received");
+  console.log(req.body);
+  res.json({ message: "All good data is received", user: req.body });
 });
 
 //starting server
-app.listen(port, serverAddress, () => {
-  `server running at ${port}`;
+app.listen(port, () => {
+  console.log(`server running on port ${port}`);
 });

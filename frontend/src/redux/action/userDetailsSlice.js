@@ -24,7 +24,7 @@ export const registerUser = createAsyncThunk(
 
 //initial state of users from reg form
 const initialState = {
-  username: {},
+  user: {},
   loading: false,
   isLoggedIn: false,
   error: null,
@@ -35,14 +35,20 @@ export const userDetailsSlice = createSlice({
   name: "user",
   initialState,
   //now i need to figure out what reducers are needed
-  reducers: {},
+  reducers: {
+    logout: (state, action) => {
+      state.user = {};
+      state.loading = false;
+      state.isLoggedIn = false;
+      state.error = null;
+    },
+  },
   //   reducers for aysncThunk
   extraReducers: (builder) => {
     builder
       // when api call to the backend is sucessfull
       .addCase(registerUser.fulfilled, (state, action) => {
-        state.username = action.payload.username;
-        state.email = action.payload.email;
+        state.user = action.payload.user;
         state.loading = false;
         state.isLoggedIn = true;
       })
@@ -60,6 +66,6 @@ export const userDetailsSlice = createSlice({
 });
 
 //all the reducers - methods to be exported from here to be used in other components
-export const {} = userDetailsSlice.actions;
+export const { logout } = userDetailsSlice.actions;
 
 export default userDetailsSlice.reducer;

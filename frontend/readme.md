@@ -6,4 +6,11 @@
    - similarity: both can be used to pass on data through out the app
    - context api tends to re-render the whole context even when its not needed, this is where a state management library like redux is useful.
 
-2. Using redux thunk to send users registration details into backend and nodeJS will handle the upload to MongoDB
+2. Using reduxThunk to send users registration details into backend and nodeJS will handle the upload to MongoDB
+
+To do:
+
+- form data is successfully being sent into backend ✅
+- redux toolkit implementation ✅
+- aysnc Thunk implementation for sending data into backend ✅
+- form validation (password is same, email address is valid (this one prolly from backend))
