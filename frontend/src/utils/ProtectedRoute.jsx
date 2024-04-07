@@ -6,9 +6,9 @@ const ProtectedRoute = ({ children }) => {
   const isLoggedIn = useSelector((state) => state.userDetails.isLoggedIn);
   const location = useLocation();
 
-  //   checking if logged in
+  //   checking user is logged in
   if (!isLoggedIn) {
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
   return children;
 };
