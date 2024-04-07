@@ -5,7 +5,7 @@ import { registerUser } from "../../redux/action/userDetailsSlice";
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from "formik";
 import { registerValidationSchema } from "../../schemas/registerSchema";
 
-const register = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userDetails.user);
   const error = useSelector((state) => state.userDetails.error);
@@ -25,24 +25,6 @@ const register = () => {
       </>
     );
   };
-
-  // form submit function
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   // combining all users details to send over to userDetailsSlice for backend
-  //   const formData = {
-  //     username: username,
-  //     email: email,
-  //     password: password,
-  //   };
-
-  //   try {
-  //     await dispatch(registerUser(formData)).unwrap();
-  //     navigate("/chat");
-  //   } catch (error) {
-  //     console.error("Registration failed:", error);
-  //   }
-  // };
 
   return (
     <>
@@ -122,4 +104,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
