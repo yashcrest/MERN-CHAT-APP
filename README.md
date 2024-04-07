@@ -1,5 +1,9 @@
 # Live Chat Application
 
+```
+Fiddiling with socket.io
+```
+
 The project layout is the following:
 
 1. `frontend` React frontend with Vite
