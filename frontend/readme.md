@@ -13,4 +13,4 @@ To do:
 - form data is successfully being sent into backend ✅
 - redux toolkit implementation ✅
 - aysnc Thunk implementation for sending data into backend ✅
-- form validation - will be using formik and yup packages for validation. will use formik form.
+- form validation - will be using formik and yup packages for validation. will use formik form. ✅

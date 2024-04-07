@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/action/userDetailsSlice";
-import { Formik, Field, Form, ErrorMessage, useField } from "formik";
-import { registerValidationSchema } from "../../schemas";
+import { Formik, Field, Form, ErrorMessage, useField, useFormik } from "formik";
+import { registerValidationSchema } from "../../schemas/registerSchema";
 
 const register = () => {
   const dispatch = useDispatch();
@@ -18,30 +18,31 @@ const register = () => {
       <>
         <label htmlFor={props.id || props.name}>{label}</label>
         <input className="text-input" {...field} {...props} />
+        {/* this is displaying the error after schema does form validation */}
         {meta.touched && meta.error ? (
-          <div className="error">{meta.error}</div>
+          <div className="reg-error-msg">{meta.error}</div>
         ) : null}
       </>
     );
   };
 
   // form submit function
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // combining all users details to send over to userDetailsSlice for backend
-    const formData = {
-      username: username,
-      email: email,
-      password: password,
-    };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // combining all users details to send over to userDetailsSlice for backend
+  //   const formData = {
+  //     username: username,
+  //     email: email,
+  //     password: password,
+  //   };
 
-    try {
-      await dispatch(registerUser(formData)).unwrap();
-      navigate("/chat");
-    } catch (error) {
-      console.error("Registration failed:", error);
-    }
-  };
+  //   try {
+  //     await dispatch(registerUser(formData)).unwrap();
+  //     navigate("/chat");
+  //   } catch (error) {
+  //     console.error("Registration failed:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -49,45 +50,72 @@ const register = () => {
         {/* formik form */}
         <Formik
           initialValues={{
-            userName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
+            Username: "",
+            Email: "",
+            Password: "",
+            ConfirmPassword: "",
           }}
           validationSchema={registerValidationSchema}
+          // handle form submission
+          onSubmit={async (values, { setSubmitting }) => {
+            //destructuring values
+            const { Username, Email, Password } = values;
+            const formData = {
+              username: Username,
+              email: Email,
+              password: Password,
+            };
+
+            try {
+              await dispatch(registerUser(formData)).unwrap();
+              navigate("/chat");
+            } catch (error) {
+              console.error("Registration failed:", error);
+            } finally {
+              setSubmitting(false);
+            }
+          }}
         >
-          <Form className="flex flex-col form-item">
-            <h1 className="text-5xl">Create a new account</h1>
-            <MyTextInput
-              label="Username:"
-              name="username"
-              type="text"
-              placeholder="avatar"
-              className="input"
-            />
-            <MyTextInput
-              label="Email:"
-              name="email"
-              type="email"
-              placeholder="name@example.com"
-              className="input"
-            />
-            <MyTextInput
-              label="Password:"
-              name="password"
-              type="password"
-              className="input"
-            />
-            <MyTextInput
-              lable="Confirm Password"
-              name="confirmPassword"
-              type="password"
-              className="input"
-            />
-            <button type="submit" className="input-btn">
-              Submit
-            </button>
-          </Form>
+          {({ isSubmitting }) => (
+            <Form className="flex flex-col form-item">
+              <h1 className="text-5xl">Create a new account</h1>
+              <MyTextInput
+                label="Username:"
+                name="Username"
+                type="text"
+                placeholder="avatar"
+                className="input"
+              />
+              <MyTextInput
+                label="Email:"
+                name="Email"
+                type="email"
+                placeholder="name@example.com"
+                className="input"
+              />
+              <MyTextInput
+                label="Password:"
+                name="Password"
+                type="password"
+                className="input"
+                placeholder="******"
+              />
+              <MyTextInput
+                label="Confirm Password"
+                name="ConfirmPassword"
+                type="password"
+                className="input"
+                placeholder="******"
+              />
+              <button
+                disabled={isSubmitting}
+                type="submit"
+                className="input-btn"
+              >
+                Submit
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </>
