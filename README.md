@@ -7,5 +7,5 @@ The project layout is the following:
 
 ## React Packages used
 
-1. formik: react way of handling form validation with its built in function
-2. yup: a schema builder for runtime value parsing and validation.
+1. Formik: Formik takes care of the repetitive and annoying stuff—keeping track of values/errors/visited fields, orchestrating validation, and handling submission
+2. Yup: a schema builder for runtime value parsing and validation.
