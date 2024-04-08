@@ -2,7 +2,7 @@ import { Chat, Login, Register, PageNotFound } from "../components/Pages";
 
 const routesConfig = [
   {
-    path: "/" && "/chat",
+    path: "/",
     component: Chat,
     protected: true,
   },

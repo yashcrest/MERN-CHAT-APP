@@ -9,10 +9,15 @@
 2. Using reduxThunk to send users registration details into backend and nodeJS will handle the upload to MongoDB
 
 Feature implementation to do:
+`frontend`
 
 - form data is successfully being sent into backend ✅
 - redux toolkit implementation ✅
 - aysnc Thunk implementation for sending data into backend ✅
 - form validation - will be using formik and yup packages for validation. will use formik form. ✅
 - sign in with google
-- protected routes for /chat , /profile
+- protected routes for /chat , /profile ✅
+
+`backend`
+
+- save users login details
