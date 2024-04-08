@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const Chat = () => {
   const { username } = useSelector((state) => state.userDetails.user);
+  const user = useSelector((state) => state.userDetails.user);
   // capitalizing username
   const capitalizeUsername = (username) => {
     const firstletter = username.charAt(0).toUpperCase();

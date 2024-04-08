@@ -3,22 +3,28 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login, Register, Chat, PageNotFound } from "./components/Pages";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import routesConfig from "./utils/routesConfig";
 function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/chat"
-          element={
-            <ProtectedRoute>
-              <Chat />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        {/* 404 page not found for any other pages */}
-        <Route path="*" element={<PageNotFound />} />
+        {routesConfig.map(
+          ({ path, component: Component, protected: isProtected }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isProtected ? (
+                  <ProtectedRoute>
+                    <Component />
+                  </ProtectedRoute>
+                ) : (
+                  <Component />
+                )
+              }
+            />
+          )
+        )}
       </Routes>
     </Router>
   );
