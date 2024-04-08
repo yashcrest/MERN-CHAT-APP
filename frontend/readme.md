@@ -17,7 +17,3 @@ Feature implementation to do:
 - form validation - will be using formik and yup packages for validation. will use formik form. ✅
 - sign in with google
 - protected routes for /chat , /profile ✅
-
-`backend`
-
-- save users login details
