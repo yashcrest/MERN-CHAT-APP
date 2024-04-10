@@ -2,16 +2,18 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const connectDB = require("./config/db");
 //middleware
 app.use(express.json());
 app.use(cors());
 
-//connect db
-mongoose
-  .connect("mongodb://localhost:3001/")
-  .then(() => console.log("Connected to mongoDB"))
-  .catch(() => console.error("Error occured while connecting: " + error));
+//load config
+dotenv.config({ path: "./config/config.env" });
+
+//connecting to db
+connectDB();
 
 //post request
 app.post("/api/register", (req, res) => {
