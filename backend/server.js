@@ -5,6 +5,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const connectDB = require("./config/db");
+const { userDetails } = require("./schemas/userDetails");
+
 //middleware
 app.use(express.json());
 app.use(cors());
@@ -17,6 +19,7 @@ connectDB();
 
 //post request
 app.post("/api/register", (req, res) => {
+  const newUser = req.body;
   console.log(req.body);
   res.json({ message: "All good data is received", user: req.body });
 });
