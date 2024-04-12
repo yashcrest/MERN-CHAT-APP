@@ -11,6 +11,7 @@ const Login = () => {
       <>
         <label htmlFor={props.id || props.name}>{label}</label>
         <input className="text-input" {...field} {...props} />
+        {/* this is to check if the input field has been touched or any invalid input has been entered */}
         {meta.touched && meta.error ? (
           <div className="reg-error-msg">{meta.error}</div>
         ) : null}
@@ -26,7 +27,7 @@ const Login = () => {
             password: "",
           }}
           validationSchema={loginValidationSchema}
-          onSubmit={() => {}}
+          onSubmit={async ({ setSubmitting }) => {}}
         >
           {({ isSubmitting }) => (
             <Form className="flex flex-col form-item">
@@ -61,20 +62,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// {
-//   <form className="login-form flex flex-col">
-//           <label className="">Email address:</label>
-//           <input type="text" name="" />
-//           <label>Password:</label>
-//           <input type="password" name="" />
-//           <button className="input-btn">Log In</button>
-//           {/* routing to register page with Link tag */}
-//           <span className="my-4">
-//             Don't have an account?
-//             <Link to="/register" className="btn bg-black text-white p-1 ">
-//               Create an Account.
-//             </Link>
-//           </span>
-//         </form>
-// }

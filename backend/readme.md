@@ -6,4 +6,5 @@
 
 ### Feature implementation
 
-1. Save users login details into db.
+1. Save users login details into db. ✅
+2. compare user login details and authenticate properly. might need to use JWT and session to create a valid session for user.
