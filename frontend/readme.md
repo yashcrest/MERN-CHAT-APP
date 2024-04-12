@@ -17,3 +17,5 @@ Feature implementation to do:
 - form validation - will be using formik and yup packages for validation. will use formik form. ✅
 - sign in with google
 - protected routes for /chat , /profile ✅
+- use formik in login page too
+- send data into redux from login page
