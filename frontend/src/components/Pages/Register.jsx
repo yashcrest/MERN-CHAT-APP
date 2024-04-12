@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/action/userDetailsSlice";
+import { registerUser } from "../../redux/action/userRegistrationSlice";
 import { Formik, Field, Form, ErrorMessage, useField, useFormik } from "formik";
 import { registerValidationSchema } from "../../schemas/registerSchema";
 

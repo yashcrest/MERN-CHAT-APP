@@ -30,7 +30,7 @@ const hashed = async (password) => {
   }
 };
 
-// POST for registration
+// POST for route registration
 app.post("/api/register", async (req, res) => {
   try {
     const hashedPassword = await hashed(req.body.password);
@@ -49,11 +49,13 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+// POST request login route
 app.post("/api/login", async (req, res) => {
   try {
     console.log(req.body);
     res.status(200).send("User should be able to login");
     const username = await req.body.username;
+    //need to have a condition to compare the username with the database and authenticate the user to login.
   } catch (err) {
     res.status(500).json({ message: "error logging in: ", error: err.message });
   }

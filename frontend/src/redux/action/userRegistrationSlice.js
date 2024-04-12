@@ -31,7 +31,7 @@ const initialState = {
 };
 
 //creating slice object
-export const userDetailsSlice = createSlice({
+export const userRegistrationSlice = createSlice({
   name: "user",
   initialState,
   //now i need to figure out what reducers are needed
@@ -66,6 +66,6 @@ export const userDetailsSlice = createSlice({
 });
 
 //all the reducers - methods to be exported from here to be used in other components
-export const { logout } = userDetailsSlice.actions;
+export const { logout } = userRegistrationSlice.actions;
 
-export default userDetailsSlice.reducer;
+export default userRegistrationSlice.reducer;

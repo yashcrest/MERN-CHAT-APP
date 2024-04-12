@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Formik, Form, useField, Field } from "formik";
 const Login = () => {
-  const [fields, setFields] = useState();
   return (
     <>
       <div className="flex flex-col items-center justify-center h-screen">
