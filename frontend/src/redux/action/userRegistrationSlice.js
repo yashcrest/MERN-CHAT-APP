@@ -60,7 +60,7 @@ export const userRegistrationSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.isLoggedIn = false;
-        state.error = action.payload.error;
+        state.error = action.payload.message;
       });
   },
 });
