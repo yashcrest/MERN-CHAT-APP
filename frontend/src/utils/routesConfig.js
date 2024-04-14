@@ -7,6 +7,11 @@ const routesConfig = [
     protected: true,
   },
   {
+    path: "/chat",
+    component: Chat,
+    protected: true,
+  },
+  {
     path: "/login",
     component: Login,
     protected: false,

@@ -2,8 +2,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// server details
 const serverPort = "3000";
-const serverBaseURL = `http://localhost:${serverPort}`;
+const serverBaseURL = `http://localhost:${serverPort}/api`;
 
 //function to call backend api to store new users data
 export const registerUser = createAsyncThunk(
@@ -11,10 +12,7 @@ export const registerUser = createAsyncThunk(
   //sending data to backend
   async (userData) => {
     try {
-      const response = await axios.post(
-        `${serverBaseURL}/api/register`,
-        userData
-      );
+      const response = await axios.post(`${serverBaseURL}/register`, userData);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -22,9 +20,23 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+// asyncThunk for user login
+export const loginUser = createAsyncThunk(
+  "userDetail/loginUser",
+  async (userData) => {
+    try {
+      const response = await axios.post(`${serverBaseURL}/login`, userData);
+      return response.data;
+    } catch (error) {
+      console.log();
+    }
+  }
+);
+
 //initial state of users from reg form
 const initialState = {
   user: {},
+  username: "",
   loading: false,
   isLoggedIn: false,
   error: null,
@@ -49,6 +61,7 @@ export const userRegistrationSlice = createSlice({
       // when api call to the backend is sucessfull
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.username = "test";
         state.loading = false;
         state.isLoggedIn = true;
       })

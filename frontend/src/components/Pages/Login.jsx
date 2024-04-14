@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Formik, Form, useField, Field } from "formik";
 import { loginValidationSchema } from "../../schemas/userSchema";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../redux/action/authSlice";
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //formik labels and inputs
   const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -27,7 +31,17 @@ const Login = () => {
             password: "",
           }}
           validationSchema={loginValidationSchema}
-          onSubmit={async ({ setSubmitting }) => {}}
+          // values is the values passed by formik form. i.e. values:values
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              await dispatch(loginUser(values)).unwrap();
+              navigate("/chat");
+            } catch (error) {
+              console.log("User Login failed", error);
+            } finally {
+              setSubmitting(false);
+            }
+          }}
         >
           {({ isSubmitting }) => (
             <Form className="flex flex-col form-item">
@@ -53,6 +67,12 @@ const Login = () => {
               >
                 Login
               </button>
+              <div>
+                <p>
+                  Don't have an account?{" "}
+                  <Link navigate="/register">Register</Link>
+                </p>
+              </div>
             </Form>
           )}
         </Formik>
