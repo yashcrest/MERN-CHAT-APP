@@ -1,4 +1,12 @@
-//will be use createAyncThunk function to call backend to store data into database
+/*
+Main objective:
+- User authenticated ?
+- Session expired
+- current user
+
+calling the backend will be handled in apiSlice file and this will only handle authentication logic, and maintain the state of user logged in or not.
+*/
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -26,6 +34,7 @@ export const loginUser = createAsyncThunk(
   async (userData) => {
     try {
       const response = await axios.post(`${serverBaseURL}/login`, userData);
+      console.log(response);
       return response.data;
     } catch (error) {
       console.log();
@@ -36,7 +45,6 @@ export const loginUser = createAsyncThunk(
 //initial state of users from reg form
 const initialState = {
   user: {},
-  username: "",
   loading: false,
   isLoggedIn: false,
   error: null,
@@ -61,7 +69,6 @@ export const userRegistrationSlice = createSlice({
       // when api call to the backend is sucessfull
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.username = "test";
         state.loading = false;
         state.isLoggedIn = true;
       })
@@ -81,4 +88,30 @@ export const userRegistrationSlice = createSlice({
 //all the reducers - methods to be exported from here to be used in other components
 export const { logout } = userRegistrationSlice.actions;
 
-export default userRegistrationSlice.reducer;
+// export default userRegistrationSlice.reducer;
+
+// need to restructure and evaluate the things the states I need to manage for making authentication work i.e. handling sessions, tokens, user authentication
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    user: null,
+    token: null,
+  },
+  reducers: {
+    setCredentials: (state, action) => {
+      const { user, actionToken } = action.payload;
+      state.user = user;
+      state.token = actionToken;
+    },
+    logOut: (state, action) => {
+      state.user = null;
+      state.token = null;
+    },
+  },
+});
+
+export const { setCredentials, logOut } = authSlice.actions;
+export default authSlice.reducer;
+export const selectCurrentUser = (state) => state.auth.user;
+export const selectCurrentToken = (state) => state.auth.token;

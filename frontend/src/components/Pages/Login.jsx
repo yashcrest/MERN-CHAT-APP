@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Formik, Form, useField, Field } from "formik";
+import { Formik, Form, useField } from "formik";
 import { loginValidationSchema } from "../../schemas/userSchema";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -44,8 +43,10 @@ const Login = () => {
           }}
         >
           {({ isSubmitting }) => (
+            // form submission in not passed onto the Form tag but is to "Formik" component which gets access to the values of the form directly.
             <Form className="flex flex-col form-item">
               <h1 className="text-5xl pb-2">Log in to your account</h1>
+              {/* custom labels and inputs */}
               <MyTextInput
                 label="Username"
                 placeholder="Enter your username"
@@ -61,16 +62,15 @@ const Login = () => {
                 className="input"
               />
               <button
+                disabled={isSubmitting}
                 type="submit"
                 className="input-btn"
-                disabled={isSubmitting}
               >
                 Login
               </button>
               <div>
                 <p>
-                  Don't have an account?{" "}
-                  <Link navigate="/register">Register</Link>
+                  Don't have an account? <Link to="/register">Register</Link>
                 </p>
               </div>
             </Form>

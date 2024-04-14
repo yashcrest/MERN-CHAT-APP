@@ -1,8 +1,4 @@
-# Live Chat Application
-
-```
-Fiddiling with socket.io
-```
+# Chat Application (Socket.io)
 
 The project layout is the following:
 

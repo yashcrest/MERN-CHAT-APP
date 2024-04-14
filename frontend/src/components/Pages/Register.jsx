@@ -32,20 +32,20 @@ const Register = () => {
         {/* formik form */}
         <Formik
           initialValues={{
-            Username: "",
-            Email: "",
-            Password: "",
-            ConfirmPassword: "",
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
           }}
           validationSchema={registerValidationSchema}
           // handle form submission
           onSubmit={async (values, { setSubmitting }) => {
             //destructuring values
-            const { Username, Email, Password } = values;
+            const { username, email, password } = values;
             const formData = {
-              username: Username,
-              email: Email,
-              password: Password,
+              username: username,
+              email: email,
+              password: password,
             };
 
             try {
@@ -62,29 +62,29 @@ const Register = () => {
             <Form className="flex flex-col form-item">
               <h1 className="text-5xl">Create a new account</h1>
               <MyTextInput
-                label="Username:"
-                name="Username"
+                label="username:"
+                name="username"
                 type="text"
                 placeholder="avatar"
                 className="input"
               />
               <MyTextInput
-                label="Email:"
-                name="Email"
+                label="email:"
+                name="email"
                 type="email"
                 placeholder="name@example.com"
                 className="input"
               />
               <MyTextInput
-                label="Password:"
-                name="Password"
+                label="password:"
+                name="password"
                 type="password"
                 className="input"
                 placeholder="******"
               />
               <MyTextInput
-                label="Confirm Password"
-                name="ConfirmPassword"
+                label="Confirm password"
+                name="confirmPassword"
                 type="password"
                 className="input"
                 placeholder="******"
