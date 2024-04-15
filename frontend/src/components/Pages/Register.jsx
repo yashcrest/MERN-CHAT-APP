@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/action/authSlice";
-import { Formik, Field, Form, ErrorMessage, useField, useFormik } from "formik";
+import { Formik, Form, useField } from "formik";
 import { registerValidationSchema } from "../../schemas/userSchema";
+import { userRegisterMutation } from "../../redux/action/authApiSlice";
+import { setCredentials } from "../../redux/action/authSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userDetails.user);
-  const error = useSelector((state) => state.userDetails.error);
+
+  //getting register mutation from authApiSlice
+  const [register] = userRegisterMutation();
   const navigate = useNavigate();
 
   // formik reusable labels and inputs
@@ -40,16 +42,10 @@ const Register = () => {
           validationSchema={registerValidationSchema}
           // handle form submission
           onSubmit={async (values, { setSubmitting }) => {
-            //destructuring values
-            const { username, email, password } = values;
-            const formData = {
-              username: username,
-              email: email,
-              password: password,
-            };
-
             try {
-              await dispatch(registerUser(formData)).unwrap();
+              // need to figure out how to handle user registration data and if dispatch action is required
+              const res = await register({ ...values }).unwrap();
+              dispatch(setCredentials({ ...res }));
               navigate("/chat");
             } catch (error) {
               console.error("Registration failed:", error);

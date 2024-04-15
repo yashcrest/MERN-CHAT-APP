@@ -3,10 +3,14 @@ import { Formik, Form, useField } from "formik";
 import { loginValidationSchema } from "../../schemas/userSchema";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../redux/action/authSlice";
+import { setCredentials } from "../../redux/action/authSlice";
+import { userLogoutMutation } from "../../redux/action/authApiSlice";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // using userLoginMutation to pass value to redux
+  const [login] = userLogoutMutation();
   //formik labels and inputs
   const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -33,7 +37,8 @@ const Login = () => {
           // values is the values passed by formik form. i.e. values:values
           onSubmit={async (values, { setSubmitting }) => {
             try {
-              await dispatch(loginUser(values)).unwrap();
+              const res = login({ ...values }).unwrap();
+              dispatch(setCredentials({ ...res }));
               navigate("/chat");
             } catch (error) {
               console.log("User Login failed", error);

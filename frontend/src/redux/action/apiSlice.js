@@ -1,10 +1,10 @@
-// this slice is dedicated to make backend api calls
+// this slice is dedicated to make backend api calls for sending users login details
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logOut, logout } from "./authSlice";
+import { setCredentials, logOut } from "./authSlice";
 
 // server details
 const serverPort = "3000";
-const serverBaseURL = `http://localhost:${serverPort}:${serverPort}/api`;
+const serverBaseURL = `http://localhost:${serverPort}/api`;
 
 // this is a base query send out to backend for authentication
 const baseQuery = fetchBaseQuery({
@@ -38,7 +38,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       // retry original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logout());
+      api.dispatch(logOut());
     }
   }
   return result;
