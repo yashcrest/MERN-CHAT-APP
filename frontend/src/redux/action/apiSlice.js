@@ -4,7 +4,7 @@ import { setCredentials, logOut } from "./authSlice";
 
 // server details
 const serverPort = "3000";
-const serverBaseURL = `http://localhost:${serverPort}/api`;
+const serverBaseURL = `http://localhost:${serverPort}`;
 
 // this is a base query send out to backend for authentication
 const baseQuery = fetchBaseQuery({
@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
     // sending access token to backend for verifying the user session has not expired
     const token = getState().auth.token;
     if (token) {
-      headers.set("authrization", `Bearer ${token}`);
+      headers.set("authorization", `Bearer ${token}`);
     }
     return headers;
   },

@@ -31,7 +31,7 @@ const hashed = async (password) => {
 };
 
 // POST for route registration
-app.post("/api/register", async (req, res) => {
+app.post("/api/users/register", async (req, res) => {
   try {
     const hashedPassword = await hashed(req.body.password);
     const newUser = await userDetails.create({
@@ -50,7 +50,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 // POST request login route
-app.post("/api/login", async (req, res) => {
+app.post("/api/users/auth", async (req, res) => {
   try {
     console.log(req.body);
     const username = await req.body.username;

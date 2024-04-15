@@ -1,32 +1,29 @@
 import "./styles.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Login, Register, Chat, PageNotFound } from "./components/Pages";
-import ProtectedRoute from "./utils/ProtectedRoute";
-import routesConfig from "./utils/routesConfig";
+import {
+  Login,
+  Register,
+  Chat,
+  PageNotFound,
+  Layout,
+} from "./components/Pages";
+import RequireAuth from "./utils/RequireAuth";
 function App() {
   return (
-    <Router>
-      <Routes>
-        {routesConfig.map(
-          ({ path, component: Component, protected: isProtected }) => (
-            <Route
-              key={path}
-              path={path}
-              element={
-                isProtected ? (
-                  <ProtectedRoute>
-                    <Component />
-                  </ProtectedRoute>
-                ) : (
-                  <Component />
-                )
-              }
-            />
-          )
-        )}
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* public routes */}
+        <Route index element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* private routes */}
+        <Route element={<RequireAuth />}>
+          <Route path="/chat" element={<Chat />} />
+        </Route>
+      </Route>
+    </Routes>
   );
 }
 

@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, useField } from "formik";
 import { registerValidationSchema } from "../../schemas/userSchema";
-import { userRegisterMutation } from "../../redux/action/authApiSlice";
+import { useRegisterMutation } from "../../redux/action/authApiSlice";
 import { setCredentials } from "../../redux/action/authSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
 
   //getting register mutation from authApiSlice
-  const [register] = userRegisterMutation();
+  const [register] = useRegisterMutation();
   const navigate = useNavigate();
 
   // formik reusable labels and inputs
@@ -43,6 +43,7 @@ const Register = () => {
           // handle form submission
           onSubmit={async (values, { setSubmitting }) => {
             try {
+              console.log(values);
               // need to figure out how to handle user registration data and if dispatch action is required
               const res = await register({ ...values }).unwrap();
               dispatch(setCredentials({ ...res }));
