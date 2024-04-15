@@ -9,6 +9,7 @@ const RequireAuth = () => {
   const location = useLocation(); //useLocation gives you the current page where the user is at.
   return (
     <>
+      {/* This is a very basic token check, need to refactor once backend is setup properly */}
       {token ? (
         <Outlet />
       ) : (
