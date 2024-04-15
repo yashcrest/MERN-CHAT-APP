@@ -17,5 +17,5 @@
 
 ### Notes
 
+- move browserRouter , routes logic into main.jsx to for better control over protected and public routes.
 - {fetchBaseQuery} is from `@reduxjs/toolkit/query/react` and works the same was axios does. need to use this to for calling backend instead of asynCreateThunk
--
