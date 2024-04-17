@@ -17,6 +17,7 @@ function App() {
         <Route index element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/*" element={<PageNotFound />} />
 
         {/* private routes */}
         <Route element={<RequireAuth />}>

@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const cors = require("cors");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
@@ -8,12 +7,21 @@ const connectDB = require("./config/db");
 const { Schema, model } = require("mongoose");
 const userDetails = require("./schemas/userDetails");
 
-//middleware
-app.use(express.json());
-app.use(cors());
+//variables
+const port = process.env.PORT || 3000;
 
 //load config
-dotenv.config({ path: "./config/config.env" });
+dotenv.config();
+
+//middleware
+app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 //calling module for connecting to db
 connectDB();
@@ -49,7 +57,17 @@ app.post("/api/users/register", async (req, res) => {
   }
 });
 
-// POST request login route
+//POST for logout
+app.post("api/users/logout", async (req, res) => {
+  try {
+    console.log(req.body);
+    res.status(200).json({ message: "logging user out" });
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+// POST request login and request get auth token
 app.post("/api/users/auth", async (req, res) => {
   try {
     console.log(req.body);
@@ -64,4 +82,5 @@ app.post("/api/users/auth", async (req, res) => {
 //starting server
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
+  console.log(process.env.FRONTEND_URL);
 });

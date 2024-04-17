@@ -8,3 +8,8 @@
 
 1. Save users login details into db. ✅
 2. compare user login details and authenticate properly. might need to use JWT and session to create a valid session for user.
+
+## Folders and their meaning
+
+- every route logic will be in Controllers folder (i.e. functions and all)
+- In user routes we want to just map the logic from the controller file.

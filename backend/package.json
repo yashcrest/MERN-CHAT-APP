@@ -1,5 +1,6 @@
 {
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "devStart": "nodemon server.js"
   },
@@ -9,6 +10,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "google-auth-library": "^9.7.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.0",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5"
