@@ -1,20 +1,27 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const cors = require("cors");
-const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
-const connectDB = require("./config/db");
-const { Schema, model } = require("mongoose");
-const userDetails = require("./schemas/userDetails");
+import cors from "cors";
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
+import cookieParser from "cookie-parser";
+import connectDB from "./config/db.js";
+import { Schema, model } from "mongoose";
+import userDetails from "./schemas/userDetails.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+// express router configs
+import userRoutes from "./routes/userRoutes.js";
 
 //variables
 const port = process.env.PORT || 3000;
 
 //load config
-dotenv.config();
+dotenv.config({ path: "./config/.env" });
 
-//middleware
+// middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+//cors middleware
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -25,6 +32,13 @@ app.use(
 
 //calling module for connecting to db
 connectDB();
+
+// routes middleware
+app.use("/api/users", userRoutes);
+
+// error middleware
+app.use(notFound);
+app.use(errorHandler);
 
 //password hashing
 const hashed = async (password) => {

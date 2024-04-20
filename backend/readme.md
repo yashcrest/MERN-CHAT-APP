@@ -13,3 +13,7 @@
 
 - every route logic will be in Controllers folder (i.e. functions and all)
 - In user routes we want to just map the logic from the controller file.
+
+### To do:
+
+- need to change strict: true, when the app is pushed to production in generateToken.js
