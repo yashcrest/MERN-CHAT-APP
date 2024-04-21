@@ -7,6 +7,7 @@ import {
   Chat,
   PageNotFound,
   Layout,
+  Profile,
 } from "./components/Pages";
 import RequireAuth from "./utils/RequireAuth";
 
@@ -23,6 +24,7 @@ function App() {
         {/* private routes */}
         <Route element={<RequireAuth />}>
           <Route path="/chat" element={<Chat />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Route>
     </Routes>
