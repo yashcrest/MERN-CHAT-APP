@@ -9,26 +9,25 @@ calling the backend will be handled in apiSlice file and this will only handle a
 
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  userInfo: localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null,
+};
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: null,
-    token: null,
-  },
+  initialState,
   reducers: {
     setCredentials: (state, action) => {
-      const { user, actionToken } = action.payload;
-      state.user = user;
-      state.token = actionToken;
+      state.userInfo = action.payload;
+      localStorage.setItem("userInfo", JSON.stringify(action.payload));
     },
     logOut: (state, action) => {
-      state.user = null;
-      state.token = null;
+      state.userInfo = null;
+      localStorage.removeItem("userInfo");
     },
   },
 });
-
-export const { setCredentials, logOut } = authSlice.actions;
 export default authSlice.reducer;
-export const selectCurrentUser = (state) => state.auth.user;
-export const selectCurrentToken = (state) => state.auth.token;
+export const { setCredentials, logOut } = authSlice.actions;

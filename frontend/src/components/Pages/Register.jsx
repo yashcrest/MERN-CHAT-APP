@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Formik, Form, useField } from "formik";
 import { registerValidationSchema } from "../../schemas/userSchema";
-import { useRegisterMutation } from "../../redux/action/authApiSlice";
+import { useRegisterMutation } from "../../redux/action/userApiSlice";
 import { setCredentials } from "../../redux/action/authSlice";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -40,14 +41,15 @@ const Register = () => {
           }}
           validationSchema={registerValidationSchema}
           // handle form submission
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
               // need to figure out how to handle user registration data and if dispatch action is required
               const res = await register({ ...values }).unwrap();
               dispatch(setCredentials({ ...res }));
               navigate("/chat");
             } catch (error) {
-              console.error("Registration failed:", error);
+              toast.error(error?.data?.message || error.error);
+              resetForm();
             } finally {
               setSubmitting(false);
             }

@@ -5,8 +5,8 @@ import authReducer from "./action/authSlice";
 
 export const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
   // this middleware functions is used to make the backend API call
   middleware: (getDefaultMiddleware) =>

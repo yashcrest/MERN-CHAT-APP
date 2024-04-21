@@ -9,6 +9,7 @@ import {
   Layout,
 } from "./components/Pages";
 import RequireAuth from "./utils/RequireAuth";
+
 function App() {
   return (
     <Routes>

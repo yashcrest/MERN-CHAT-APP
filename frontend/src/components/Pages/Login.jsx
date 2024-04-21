@@ -4,7 +4,8 @@ import { loginValidationSchema } from "../../schemas/userSchema";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../../redux/action/authSlice";
-import { useLoginMutation } from "../../redux/action/authApiSlice";
+import { useLoginMutation } from "../../redux/action/userApiSlice";
+import { toast } from "react-toastify";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,8 +42,8 @@ const Login = () => {
               dispatch(setCredentials({ ...res }));
               // not navigating there cause backend needs to sent proper token and session
               navigate("/chat");
-            } catch (error) {
-              console.log("User Login failed", error);
+            } catch (err) {
+              toast.error(err?.data?.message || err.error);
             } finally {
               setSubmitting(false);
             }
