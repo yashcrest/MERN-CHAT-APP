@@ -13,7 +13,7 @@ const Chat = () => {
   return (
     <div>
       <h1 className="text-5xl">Chat Window</h1>
-      <p>Hello {user}!</p>
+      <p>Hello {user.username}!</p>
     </div>
   );
 };

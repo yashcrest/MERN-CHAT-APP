@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik, Form, useField } from "formik";
 import { registerValidationSchema } from "../../schemas/userSchema";
 import { useRegisterMutation } from "../../redux/action/authApiSlice";
@@ -43,7 +42,6 @@ const Register = () => {
           // handle form submission
           onSubmit={async (values, { setSubmitting }) => {
             try {
-              console.log(values);
               // need to figure out how to handle user registration data and if dispatch action is required
               const res = await register({ ...values }).unwrap();
               dispatch(setCredentials({ ...res }));

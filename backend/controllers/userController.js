@@ -22,6 +22,7 @@ const authUser = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
     });
+    console.log("user sent valid creds");
   } else {
     res.status(401);
     throw new Error("Invalid username or password");

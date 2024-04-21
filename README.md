@@ -1,4 +1,4 @@
-# Chat Application (Socket.io)
+# Chat Application (Socket.io) - [Under development]
 
 The project layout is the following:
 

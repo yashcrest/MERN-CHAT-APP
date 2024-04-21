@@ -10,6 +10,16 @@ import userRoutes from "./routes/userRoutes.js";
 //variables
 const port = process.env.PORT || 3000;
 
+//cors middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 //load config
 dotenv.config({ path: "./config/.env" });
 
@@ -17,18 +27,8 @@ dotenv.config({ path: "./config/.env" });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
 // routes middleware
 app.use("/api/users", userRoutes);
-
-//cors middleware
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
 
 //calling module for connecting to db
 connectDB();
