@@ -9,7 +9,7 @@ import {
   Layout,
   Profile,
 } from "./components/Pages";
-import RequireAuth from "./utils/RequireAuth";
+import RequireAuth from "./components/RequireAuth";
 
 function App() {
   return (
