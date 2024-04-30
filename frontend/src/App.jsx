@@ -8,7 +8,7 @@ import {
   PageNotFound,
   Layout,
   Profile,
-} from "./components/Pages";
+} from "./components";
 import RequireAuth from "./components/RequireAuth";
 
 function App() {

@@ -1,6 +1,8 @@
 # Tools will be using
 
 `redux`
+`tailwind`
+`typeScript` - need to be implemented
 
 ### To do (Features implementation tracker)
 
@@ -8,10 +10,10 @@
 - redux toolkit implementation ✅
 - aysnc Thunk implementation for sending data into backend ✅
 - form validation - will be using formik and yup packages for validation. will use formik form. ✅
-- sign in with google
 - protected routes for /chat , /profile ✅
 - use formik in login page too ✅
 - send data from login page into redux store ✅
+- Sign in with Google left to be implemented
 - **login logic** failing as its not handling the state succesfully to send the data of pending, successful or failed properly. need to handle to state properly to change the state of "isUseLoggedIn" properly.
 - refactor protected routes and pass on a props of `requireAuth` to distinguish between public and private routes
 
