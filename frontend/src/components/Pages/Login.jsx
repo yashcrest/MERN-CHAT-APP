@@ -36,7 +36,7 @@ const Login = () => {
           }}
           validationSchema={loginValidationSchema}
           // values is the values passed by formik form. i.e. values:values
-          onSubmit={async (values, { setSubmitting }) => {
+          onSubmit={async (values, { setSubmitting, resetForm }) => {
             try {
               const res = await login({ ...values }).unwrap();
               dispatch(setCredentials({ ...res }));
@@ -44,6 +44,7 @@ const Login = () => {
               navigate("/chat");
             } catch (err) {
               toast.error(err?.data?.message || err.error);
+              resetForm();
             } finally {
               setSubmitting(false);
             }
