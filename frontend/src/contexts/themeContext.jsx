@@ -11,9 +11,14 @@ export const ThemeProvider = ({ children }) => {
     return saveMode === "true" ? true : false;
   });
 
-  // save the mode to localStorage whenever it changes
+  // save the theme to localStorage
   useEffect(() => {
     localStorage.setItem("isDarkMode", isDarkMode);
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {

@@ -28,7 +28,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-700">
         <Formik
           initialValues={{
             username: "",
@@ -53,7 +53,9 @@ const Login = () => {
           {({ isSubmitting }) => (
             // form submission in not passed onto the Form tag but is to "Formik" component which gets access to the values of the form directly.
             <Form className="flex flex-col form-item">
-              <h1 className="text-5xl pb-2">Log in to your account</h1>
+              <h1 className="text-5xl pb-2 dark:text-white">
+                Log in to your account
+              </h1>
               {/* custom labels and inputs */}
               <MyTextInput
                 label="Username"

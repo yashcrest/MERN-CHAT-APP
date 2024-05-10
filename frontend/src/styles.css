@@ -11,7 +11,7 @@
 }
 
 .input-btn {
-  @apply mt-5 text-2xl py-2 border rounded bg-slate-400;
+  @apply mt-5 text-2xl py-2 border rounded bg-slate-400 dark:text-white;
 }
 
 .reg-error-msg {

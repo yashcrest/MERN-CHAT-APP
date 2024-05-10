@@ -14,9 +14,9 @@
 - use formik in login page too ✅
 - send data from login page into redux store ✅
 - clear user login form if invalid username and password has been entered. ✅
-- Sign in with Google left to be implemented
-- **login logic** failing as its not handling the state succesfully to send the data of pending, successful or failed properly. need to handle to state properly to change the state of "isUseLoggedIn" properly.
-- refactor protected routes and pass on a props of `requireAuth` to distinguish between public and private routes
+- after logged in do not route to login page when clicked on "chat app" on navbar.
+- built logout logic.
+- built profile and logout route.
 
 ### Notes
 
