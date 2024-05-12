@@ -27,7 +27,7 @@ dotenv.config({ path: "./config/.env" });
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser()); // this allows us to access jwt from request object i.e. req.cookies.jwt (ref authMiddleware.js file)
 // /api/users route middleware (this route logic is handled in userRoutes.js file)
 app.use("/api/users", userRoutes);
 

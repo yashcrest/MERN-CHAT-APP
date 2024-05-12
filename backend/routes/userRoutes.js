@@ -13,8 +13,7 @@ import { protect } from "../middleware/authMiddleware.js";
 
 router.post("/auth", authUser);
 router.post("/register", registerUser);
-router.post("/logout", logoutUser);
-
 // protected routes
+router.post("/logout", protect, logoutUser);
 
 export default router;
