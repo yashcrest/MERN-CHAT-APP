@@ -1,16 +1,18 @@
 /*
-We also will need to setup async/await into this function because we will be dealing with mongo Database which returns a promise
-- using express-async-hanlder to avoid wrapping everything inside try/catch block
+In the provided code, the authUser function is wrapped with asyncHandler. This allows the function to use async/await syntax for handling asynchronous operations. However, if an error occurs within the authUser function, it needs to be caught and handled properly.
+The asyncHandler function takes an asynchronous function as an argument and returns a new function that wraps the original function. This wrapper function catches any errors that occur during the execution of the original function and passes them to the Express.js error handling middleware.
+
 */
 
 import asyncHandler from "express-async-handler";
-import userDetails from "../schemas/userDetails.js";
+import userDetails from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
 // @desc     Auth user/set token
 // route     POST api/users/auth
 // @access   Public
 const authUser = asyncHandler(async (req, res) => {
+  //explaination above
   const { username, password } = req.body;
 
   //comparing the user details in DB

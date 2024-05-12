@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
+import messagesRoutes from "./routes/messagesRoutes.js";
 
 //variables
 const port = process.env.PORT || 3000;
@@ -27,8 +28,11 @@ dotenv.config({ path: "./config/.env" });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// routes middleware
+// /api/users route middleware (this route logic is handled in userRoutes.js file)
 app.use("/api/users", userRoutes);
+
+// for messages routes
+app.use("/api/messages", messagesRoutes);
 
 //calling module for connecting to db
 connectDB();
