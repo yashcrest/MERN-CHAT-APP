@@ -13,6 +13,7 @@ const sendMessage = asyncHandler(async (req, res) => {
     // need to get sender id
     const senderId = req.user._id;
 
+    // getting the conversation between the users from DB
     let conversation = await Conversation.findOne({
       participants: {
         $all: [senderId, receiverId],
@@ -26,18 +27,22 @@ const sendMessage = asyncHandler(async (req, res) => {
       });
     }
 
+    //creating message object
     const newMessage = new Message({
       senderId,
       receiverId,
       message,
     });
 
+    //and pushing the messages into the Message array
     if (newMessage) {
       conversation.messages.push(newMessage._id);
     }
 
+    // saving the conversation and messages into mongoDB
+    await Promise.all([conversation.save(), newMessage.save()]);
+
     res.status(201).json(newMessage);
-    console.log("postman trying to connect!");
   } catch (error) {
     console.log("Error in sendMessage controller: ", error.message);
     res.status(500).json({ error: "Internal server error" });
@@ -48,7 +53,21 @@ const sendMessage = asyncHandler(async (req, res) => {
 // route     GET api/messages/get/:id
 // @access   Private
 const getMessage = asyncHandler(async (req, res) => {
-  console.log("get message");
+  try {
+    const { id: userToChatId } = req.params;
+    const senderId = req.user._id;
+
+    // getting the conversation/ messages between them
+    const conversation = await Conversation.findOne({
+      participants: { $all: [senderId, userToChatId] },
+    }).populate("messages"); // this is giving the actual messages instead of the messages array
+
+    const messages = conversation.messages;
+    res.status(200).json(messages);
+  } catch (error) {
+    console.log("Error in getMessages controller: ", error.message);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 export { sendMessage, getMessage };
