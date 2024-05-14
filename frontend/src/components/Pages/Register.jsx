@@ -30,72 +30,75 @@ const Register = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
-        {/* formik form */}
-        <Formik
-          initialValues={{
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          }}
-          validationSchema={registerValidationSchema}
-          // handle form submission
-          onSubmit={async (values, { setSubmitting, resetForm }) => {
-            try {
-              // need to figure out how to handle user registration data and if dispatch action is required
-              const res = await register({ ...values }).unwrap();
-              dispatch(setCredentials({ ...res }));
-              navigate("/chat");
-            } catch (error) {
-              toast.error(error?.data?.message || error.error);
-              resetForm();
-            } finally {
-              setSubmitting(false);
-            }
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form className="flex flex-col form-item">
-              <h1 className="text-5xl">Create a new account</h1>
-              <MyTextInput
-                label="username:"
-                name="username"
-                type="text"
-                placeholder="avatar"
-                className="input"
-              />
-              <MyTextInput
-                label="email:"
-                name="email"
-                type="email"
-                placeholder="name@example.com"
-                className="input"
-              />
-              <MyTextInput
-                label="password:"
-                name="password"
-                type="password"
-                className="input"
-                placeholder="******"
-              />
-              <MyTextInput
-                label="Confirm password"
-                name="confirmPassword"
-                type="password"
-                className="input"
-                placeholder="******"
-              />
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className="input-btn"
-              >
-                Submit
-              </button>
-            </Form>
-          )}
-        </Formik>
+      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-800">
+        <div className=" p-6 rounded-lg shadow-md bg-gray-100 dark:bg-gray-900">
+          {/* formik form */}
+          <Formik
+            initialValues={{
+              username: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            }}
+            validationSchema={registerValidationSchema}
+            // handle form submission
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+              try {
+                // need to figure out how to handle user registration data and if dispatch action is required
+                const res = await register({ ...values }).unwrap();
+                dispatch(setCredentials({ ...res }));
+                navigate("/chat");
+              } catch (error) {
+                toast.error(error?.data?.message || error.error);
+                resetForm();
+              } finally {
+                setSubmitting(false);
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className="flex flex-col">
+                <h1 className="text-3xl font-semibold dark:text-white pb-5">
+                  Create a{" "}
+                  <span className="text-blue-500 dark:text-blue-400">
+                    new account
+                  </span>
+                </h1>
+                <MyTextInput
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                />
+                <MyTextInput
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com "
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                />
+                <MyTextInput
+                  name="password"
+                  type="password"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  placeholder="Password"
+                />
+                <MyTextInput
+                  name="confirmPassword"
+                  type="password"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  placeholder="Confirm Password"
+                />
+                <button
+                  disabled={isSubmitting}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </>
   );

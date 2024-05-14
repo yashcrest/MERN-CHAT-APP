@@ -3,7 +3,12 @@ import userDetails from "../models/userModel.js";
 
 const getUsersForSidebar = asyncHandler(async (req, res) => {
   try {
-    const loggedInUserId = req.user._id;
+    // if you would like to filter current users from the sideBar
+    // const loggedInUserId = req.user._id;
+    // const filteredUsers = await userDetails
+    //   .find({ _id: { $ne: loggedInUserId } })
+    //   .select("-password");
+
     // getting all the users in DB
     const allUsers = await userDetails.find().select("-password");
 

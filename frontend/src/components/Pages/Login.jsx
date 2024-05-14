@@ -28,64 +28,65 @@ const Login = () => {
   };
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-700">
-        <Formik
-          initialValues={{
-            username: "",
-            password: "",
-          }}
-          validationSchema={loginValidationSchema}
-          // values is the values passed by formik form. i.e. values:values
-          onSubmit={async (values, { setSubmitting, resetForm }) => {
-            try {
-              const res = await login({ ...values }).unwrap();
-              dispatch(setCredentials({ ...res }));
-              // not navigating there cause backend needs to sent proper token and session
-              navigate("/chat");
-            } catch (err) {
-              toast.error(err?.data?.message || err.error);
-              resetForm();
-            } finally {
-              setSubmitting(false);
-            }
-          }}
-        >
-          {({ isSubmitting }) => (
-            // form submission in not passed onto the Form tag but is to "Formik" component which gets access to the values of the form directly.
-            <Form className="flex flex-col form-item">
-              <h1 className="text-5xl pb-2 dark:text-white">
-                Log in to your account
-              </h1>
-              {/* custom labels and inputs */}
-              <MyTextInput
-                label="Username"
-                placeholder="Enter your username"
-                name="username"
-                type="text"
-                className="input"
-              />
-              <MyTextInput
-                label="Password"
-                placeholder="Enter Password"
-                name="password"
-                type="password"
-                className="input"
-              />
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className="input-btn"
-              >
-                Login
-              </button>
-              <div>
-                <p>
-                  Don't have an account? <Link to="/register">Register</Link>
-                </p>
-              </div>
-            </Form>
-          )}
-        </Formik>
+      <div className="flex flex-col items-center justify-center min-w-96 mx-auto h-screen dark:bg-gray-800">
+        <div className=" p-6 rounded-lg shadow-md bg-gray-100 dark:bg-gray-900">
+          <Formik
+            initialValues={{
+              username: "",
+              password: "",
+            }}
+            validationSchema={loginValidationSchema}
+            // values is the values passed by formik form. i.e. values:values
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+              try {
+                const res = await login({ ...values }).unwrap();
+                dispatch(setCredentials({ ...res }));
+                // not navigating there cause backend needs to sent proper token and session
+                navigate("/chat");
+              } catch (err) {
+                toast.error(err?.data?.message || err.error);
+                resetForm();
+              } finally {
+                setSubmitting(false);
+              }
+            }}
+          >
+            {({ isSubmitting }) => (
+              // form submission in not passed onto the Form tag but is to "Formik" component which gets access to the values of the form directly.
+              <Form className="flex flex-col form-item">
+                <h1 className="text-3xl font-semibold text-center pb-2 dark:text-white">
+                  Log in to{" "}
+                  <span className="text-blue-500 dark:text-blue-400">Chat</span>
+                </h1>
+                {/* custom labels and inputs */}
+                <MyTextInput
+                  placeholder="Username"
+                  name="username"
+                  type="text"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50 dark:text-black"
+                />
+                <MyTextInput
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50 dark:text-black"
+                />
+                <button
+                  disabled={isSubmitting}
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                >
+                  Login
+                </button>
+                <div className="dark:text-gray-50 mt-2 hover:underline inline-block hover:text-blue-700 dark:hover:text-blue-300">
+                  <p>
+                    Don't have an account? <Link to="/register">Register</Link>
+                  </p>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
     </>
   );

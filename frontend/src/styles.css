@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input {
-  @apply border-2 p-2 rounded bg-neutral-300 outline-none;
-}
-
-.form-item {
-  @apply mx-2;
-}
-
-.input-btn {
-  @apply mt-5 text-2xl py-2 border rounded bg-slate-400 dark:text-white;
-}
-
 .reg-error-msg {
   @apply text-red-800;
 }
