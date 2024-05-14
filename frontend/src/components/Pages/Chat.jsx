@@ -11,8 +11,6 @@ const Chat = () => {
         <div className="chat-container border-solid border-2  p-5 border-red-700 flex">
           <Sidebar />
           <MessageContainer />
-          {/* <h1 className="mx-auto flex justify-center text-3xl">Chat window</h1> */}
-          {/* <p>Hello !</p> */}
         </div>
       </div>
     </>
