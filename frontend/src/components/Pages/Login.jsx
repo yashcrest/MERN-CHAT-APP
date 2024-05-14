@@ -80,7 +80,7 @@ const Login = () => {
                 </button>
                 <div className="dark:text-gray-50 mt-2 hover:underline inline-block hover:text-blue-700 dark:hover:text-blue-300">
                   <p>
-                    Don't have an account? <Link to="/register">Register</Link>
+                    <Link to="/register"> Don't have an account? Register</Link>
                   </p>
                 </div>
               </Form>

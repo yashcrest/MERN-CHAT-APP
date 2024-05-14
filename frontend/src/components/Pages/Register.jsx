@@ -5,6 +5,7 @@ import { registerValidationSchema } from "../../schemas/userSchema";
 import { useRegisterMutation } from "../../redux/action/userApiSlice";
 import { setCredentials } from "../../redux/action/authSlice";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -95,6 +96,11 @@ const Register = () => {
                 >
                   Submit
                 </button>
+                <div className="dark:text-gray-50 mt-2  text-center hover:underline inline-block hover:text-blue-700 dark:hover:text-blue-300">
+                  <p>
+                    <Link to="/login">Already have account? Login</Link>
+                  </p>
+                </div>
               </Form>
             )}
           </Formik>
