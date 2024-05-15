@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-const USERS_URL = "/api/users"; // need to build these endpoints in my backend ✅
+const USERS_URL = "/api/users"; //the rest of the URL is coming from vite.config.js
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

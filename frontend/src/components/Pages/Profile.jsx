@@ -6,7 +6,6 @@ const Profile = () => {
   return (
     <>
       <h1>This is where we show user's profile info...</h1>
-      <button onClick={() => console.log("logout")}>Logout</button>
     </>
   );
 };

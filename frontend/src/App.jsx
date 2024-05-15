@@ -1,6 +1,7 @@
 import "./styles.css";
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Login,
   Register,
@@ -12,13 +13,21 @@ import {
 import RequireAuth from "./components/RequireAuth";
 
 function App() {
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
-        <Route index element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route index element={userInfo ? <Navigate to="/chat" /> : <Login />} />
+        <Route
+          path="/login"
+          element={userInfo ? <Navigate to="/chat" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={userInfo ? <Navigate to="/chat" /> : <Register />}
+        />
         <Route path="/*" element={<PageNotFound />} />
 
         {/* private routes */}
