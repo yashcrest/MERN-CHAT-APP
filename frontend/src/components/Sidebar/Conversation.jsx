@@ -6,7 +6,7 @@ const Conversation = () => {
       <div className="flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer">
         {/* avatar */}
         <div className="avatar">
-          <div className="w-12 mask mask-hexagon">
+          <div className="w-12 rounded-full">
             <img
               src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
               alt=""
