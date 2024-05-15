@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../../redux/action/authSlice";
 import { useLoginMutation } from "../../redux/action/userApiSlice";
 import { toast } from "react-toastify";
+import { FaGoogle } from "react-icons/fa";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -83,6 +84,13 @@ const Login = () => {
                     <Link to="/register"> Don't have an account? Register</Link>
                   </p>
                 </div>
+                <div className="divider h-1">
+                  <span>OR</span>
+                </div>
+                <button className="btn btn-primary my-1 flex">
+                  Sign with Google
+                  <FaGoogle className="text-xl" />
+                </button>
               </Form>
             )}
           </Formik>
