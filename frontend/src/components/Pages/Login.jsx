@@ -84,7 +84,7 @@ const Login = () => {
                     <Link to="/register"> Don't have an account? Register</Link>
                   </p>
                 </div>
-                <div className="divider h-1">
+                <div className="divider dark:text-white">
                   <span>OR</span>
                 </div>
                 <button className="btn btn-primary my-1 flex">
