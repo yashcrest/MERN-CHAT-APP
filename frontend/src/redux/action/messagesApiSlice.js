@@ -9,13 +9,13 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
     }),
     getMessages: builder.query({
       query: (id) => ({
-        url: `${Messages_URL}/:${id}`,
+        url: `${Messages_URL}/${id}`,
       }),
     }),
 
     sendMessages: builder.mutation({
       query: (id) => ({
-        url: `${Messages_URL}/send/:${id}`,
+        url: `${Messages_URL}/send/${id}`,
         method: "POST",
         body: id,
       }),

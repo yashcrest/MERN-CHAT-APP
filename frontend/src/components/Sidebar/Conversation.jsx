@@ -1,12 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useGetMessagesQuery } from "../../redux/action/messagesApiSlice";
+import { setSelectedMessage } from "../../redux/action/messagesSlice";
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
+  const dispatch = useDispatch();
+  const { _id } = useSelector((state) => state.auth.userInfo);
+  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+
+  const isSelected = selectedMessage?._id === conversation._id;
+  const { data, isloading, isError } = useGetMessagesQuery(_id);
+
   return (
     <>
-      <div className="flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer">
+      <div
+        className="flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer"
+        onClick={() => dispatch(setSelectedMessage(selectedMessage))}
+      >
         {/* avatar */}
-        <div className="avatar">
+        <div className="avatar online">
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic} alt="profile pic" />
           </div>
@@ -18,7 +30,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
           </div>
         </div>
       </div>
-      {!lastIdx && <div className="divider my-0 py-0 h-1" />}
+      {!lastIdx && <div className="divider my-0 py-0" />}
     </>
   );
 };

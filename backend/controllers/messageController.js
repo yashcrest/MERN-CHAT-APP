@@ -62,6 +62,8 @@ const getMessage = asyncHandler(async (req, res) => {
       participants: { $all: [senderId, userToChatId] },
     }).populate("messages"); // this is giving the actual messages instead of the messages array
 
+    if (!conversation) return res.status(200).json([]);
+
     const messages = conversation.messages;
     res.status(200).json(messages);
   } catch (error) {
