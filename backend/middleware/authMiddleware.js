@@ -20,7 +20,7 @@ const protect = asyncHandler(async (req, res, next) => {
       return res.status(401).json({ error: "Unauthorized - Invalid Token" });
     }
 
-    const user = await userDetails.findById(decoded.userID).select("-password");
+    const user = await userDetails.findById(decoded.userId).select("-password");
     console.log({ decoded });
 
     if (!user) {

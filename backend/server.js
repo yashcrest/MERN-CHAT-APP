@@ -38,7 +38,7 @@ app.use("/api/users", authRoutes);
 app.use("/api/messages", messagesRoutes);
 
 //user routes
-app.use("/api/users", userRoutes);
+app.use("/api/sidebarconversations", userRoutes);
 
 //calling module for connecting to db
 connectDB();

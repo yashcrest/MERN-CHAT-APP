@@ -21,8 +21,10 @@ const authUser = asyncHandler(async (req, res) => {
     generateToken(res, user._id);
     res.json({
       _id: user._id,
+      fullName: user.fullName,
       username: user.username,
       email: user.email,
+      profilePic: user.profilePic,
     });
     console.log("user sent valid creds");
   } else {
@@ -35,7 +37,7 @@ const authUser = asyncHandler(async (req, res) => {
 // route     POST api/users/
 // @access   Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
+  const { fullName, username, email, password } = req.body;
 
   // checking if the user already exists
   const userExists = await userDetails.findOne({ email });
@@ -45,16 +47,30 @@ const registerUser = asyncHandler(async (req, res) => {
       "Don't register... we already have you in our DB. Just go back and sign in"
     );
   }
+
+  //setting up uconst
+  let names = fullName.split(" ");
+  let firstName = names[0];
+  let lastName = names[1];
+  const profilePic = `https://avatar.iran.liara.run/username?username=${firstName}+${lastName}`;
   // adding into mongoDB
-  const user = await userDetails.create({ username, email, password });
+  const user = await userDetails.create({
+    fullName,
+    username,
+    email,
+    password,
+    profilePic,
+  });
 
   //checking if user is created successfully
   if (user) {
     generateToken(res, user._id);
     res.status(201).json({
       _id: user._id,
+      fullName: user.fullName,
       username: user.username,
       email: user.email,
+      profilePic: user.profilePic,
     });
   } else {
     res.status(400);

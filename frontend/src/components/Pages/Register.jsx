@@ -36,6 +36,7 @@ const Register = () => {
           {/* formik form */}
           <Formik
             initialValues={{
+              fullName: "",
               username: "",
               email: "",
               password: "",
@@ -65,6 +66,12 @@ const Register = () => {
                     new account
                   </span>
                 </h1>
+                <MyTextInput
+                  name="fullName"
+                  type="text"
+                  placeholder="Full Name"
+                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                />
                 <MyTextInput
                   name="username"
                   type="text"

@@ -3,6 +3,7 @@ import * as yup from "yup";
 const passwordRules = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 export const registerValidationSchema = yup.object().shape({
+  fullName: yup.string("Please enter your Full Name").required(),
   username: yup.string().min(5, "Minimum of 5 character").required(),
   email: yup.string().email("Please enter a valid email.").required(),
   password: yup

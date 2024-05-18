@@ -5,6 +5,9 @@ import bcrypt from "bcrypt";
 
 const userDetailsSchema = new Schema(
   {
+    fullName: {
+      type: String,
+    },
     username: {
       type: String,
       unique: String,
@@ -14,6 +17,9 @@ const userDetailsSchema = new Schema(
       unique: true,
     },
     password: String,
+    profilePic: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
