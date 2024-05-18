@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetMessagesQuery } from "../../redux/action/messagesApiSlice";
 import { setSelectedMessage } from "../../redux/action/messagesSlice";
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
   const dispatch = useDispatch();
-  const { _id } = useSelector((state) => state.auth.userInfo);
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
 
   let isSelected = selectedMessage?._id === conversation._id;
-  const { data, isloading, isError } = useGetMessagesQuery(_id);
 
   return (
     <>
       <div
         className={`flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer ${
-          isSelected ? "bg-sky-500" : ""
+          isSelected ? "bg-sky-600" : ""
         }`}
         onClick={() => dispatch(setSelectedMessage(conversation))}
       >

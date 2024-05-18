@@ -4,6 +4,8 @@ const initialState = {
   selectedMessage: localStorage.getItem("selectedMessage")
     ? JSON.parse(localStorage.getItem("selectedMessage"))
     : null,
+
+  sendMessage: null,
 };
 
 const messageSlice = createSlice({
@@ -14,8 +16,11 @@ const messageSlice = createSlice({
       state.selectedMessage = action.payload;
       localStorage.setItem("selectedMessage", JSON.stringify(action.payload));
     },
+    setSendMessage: (state, action) => {
+      state.sendMessage = action.payload;
+    },
   },
 });
 
 export default messageSlice.reducer;
-export const { setSelectedMessage } = messageSlice.actions;
+export const { setSelectedMessage, setSendMessage } = messageSlice.actions;
