@@ -8,14 +8,16 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
   const { _id } = useSelector((state) => state.auth.userInfo);
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
 
-  const isSelected = selectedMessage?._id === conversation._id;
+  let isSelected = selectedMessage?._id === conversation._id;
   const { data, isloading, isError } = useGetMessagesQuery(_id);
 
   return (
     <>
       <div
-        className="flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer"
-        onClick={() => dispatch(setSelectedMessage(selectedMessage))}
+        className={`flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer ${
+          isSelected ? "bg-sky-500" : ""
+        }`}
+        onClick={() => dispatch(setSelectedMessage(conversation))}
       >
         {/* avatar */}
         <div className="avatar online">
