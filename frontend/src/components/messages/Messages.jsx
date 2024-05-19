@@ -5,22 +5,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { useGetMessagesQuery } from "../../redux/action/apiSlice";
 
 const Messages = () => {
-  const { _id } = useSelector((state) => state.auth.userInfo);
+  // const { _id } = useSelector((state) => state.auth.userInfo);
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
 
   const {
     data: messages,
-    isloading,
     isFetching,
     isSuccess,
     isError,
     error,
-  } = useGetMessagesQuery(_id);
+  } = useGetMessagesQuery(selectedMessage._id);
 
   let content;
-  if (isloading) {
-    content = <span className="loading loading-spinner mx-auto" />;
-  } else if (isSuccess) {
+  if (isSuccess && messages.length > 0) {
     content = messages.map((message) => {
       return (
         <div key={message._id}>

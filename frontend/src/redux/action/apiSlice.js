@@ -43,11 +43,11 @@ export const apiSlice = createApi({
       }),
     }),
 
-    sendMessages: builder.mutation({
-      query: (id) => ({
-        url: `${messages_EndPoint}/send/${message._id}`,
+    sendMessage: builder.mutation({
+      query: ({ id, message }) => ({
+        url: `${messages_EndPoint}/send/${id}`,
         method: "POST",
-        body: id,
+        body: { message },
       }),
     }),
   }),
@@ -59,5 +59,5 @@ export const {
   useRegisterMutation,
   useGetSidebarConversationQuery,
   useGetMessagesQuery,
-  useSendMessagesMutation,
+  useSendMessageMutation,
 } = apiSlice;

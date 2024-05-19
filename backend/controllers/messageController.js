@@ -13,6 +13,9 @@ const sendMessage = asyncHandler(async (req, res) => {
     // need to get sender id
     const senderId = req.user._id;
 
+    console.log("receiver id : ", receiverId);
+    console.log("sender id: ", senderId);
+
     // getting the conversation between the users from DB
     let conversation = await Conversation.findOne({
       participants: {
