@@ -4,7 +4,7 @@ import { loginValidationSchema } from "../../schemas/userSchema";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setCredentials } from "../../redux/action/authSlice";
-import { useLoginMutation } from "../../redux/action/userApiSlice";
+import { useLoginMutation } from "../../redux/action/apiSlice";
 import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
 const Login = () => {

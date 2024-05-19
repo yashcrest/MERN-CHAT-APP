@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Formik, Form, useField } from "formik";
 import { registerValidationSchema } from "../../schemas/userSchema";
-import { useRegisterMutation } from "../../redux/action/userApiSlice";
+import { useRegisterMutation } from "../../redux/action/apiSlice";
 import { setCredentials } from "../../redux/action/authSlice";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";

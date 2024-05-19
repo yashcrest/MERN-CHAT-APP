@@ -4,7 +4,7 @@ import { FaBars, FaSun, FaMoon } from "react-icons/fa6";
 import { useState } from "react";
 import { useTheme } from "../contexts/themeContext";
 import { useSelector, useDispatch } from "react-redux";
-import { useLogoutMutation } from "../redux/action/userApiSlice";
+import { useLogoutMutation } from "../redux/action/apiSlice";
 import { logOut } from "../redux/action/authSlice";
 import { setSelectedMessage } from "../redux/action/messagesSlice";
 const NavBar = () => {
