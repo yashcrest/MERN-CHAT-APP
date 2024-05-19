@@ -3,7 +3,7 @@
 Project Structure:
 
 1. `frontend` React frontend with Vite
-2. `backend` Nodejs frontend with Socket.io
+2. `backend` Nodejs backend with Socket.io
 
 **Running Project Locally**
 If you want to run both frontend and backend at one go
