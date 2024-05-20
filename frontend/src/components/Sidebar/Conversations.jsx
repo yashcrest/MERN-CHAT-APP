@@ -28,7 +28,7 @@ const Conversations = () => {
       );
     });
   } else if (isError) {
-    content = toast.error(error?.data?.error || error.error);
+    toast.error(error?.data?.error || error.error);
     console.log(error);
   }
 

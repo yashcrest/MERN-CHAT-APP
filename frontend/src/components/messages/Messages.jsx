@@ -3,9 +3,9 @@ import Message from "./Message";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetMessagesQuery } from "../../redux/action/apiSlice";
+import MessageSkeleton from "./MessageSkeleton";
 
 const Messages = () => {
-  // const { _id } = useSelector((state) => state.auth.userInfo);
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
 
   const {
@@ -17,16 +17,18 @@ const Messages = () => {
   } = useGetMessagesQuery(selectedMessage._id);
 
   let content;
-  if (isSuccess && messages.length > 0) {
+  if (isFetching) {
+    content = [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />);
+  } else if (!isFetching && messages.length === 0) {
+    content = (
+      <p className="text-center">Send a message to start the conversation</p>
+    );
+  } else if (!isFetching && messages.length > 0) {
     content = messages.map((message) => {
-      return (
-        <div key={message._id}>
-          <Message message={message} />
-        </div>
-      );
+      return <Message key={message._id} message={message} />;
     });
   } else if (isError) {
-    content = toast.error(error?.data?.message || error.error);
+    toast.error(error?.data?.message || error.error);
   }
 
   return <div className="px-4 flex-1 overflow-auto">{content}</div>;
