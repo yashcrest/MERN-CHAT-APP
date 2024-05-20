@@ -41,6 +41,7 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `${messages_EndPoint}/${id}`,
       }),
+      providesTags: (result, error, id) => [{ type: "Messages", id: "LIST" }],
     }),
 
     sendMessage: builder.mutation({
@@ -49,6 +50,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: { message },
       }),
+      invalidatesTags: [{ type: "Messages", id: "LIST" }],
     }),
   }),
 });

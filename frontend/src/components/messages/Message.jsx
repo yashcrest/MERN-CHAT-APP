@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { extractTime } from "../../utils/extractTime";
 
 const Message = ({ message }) => {
+  // formatted time for message
+  const formattedTime = extractTime(message.createdAt);
   const { userInfo } = useSelector((state) => state.auth);
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
   const loggedInUser = message.senderId === userInfo._id;
@@ -21,7 +24,9 @@ const Message = ({ message }) => {
       <div className={`chat-bubble text-white ${bubbleBgColor}`}>
         {message.message}
       </div>
-      <div className="chat-footer  text-xs flex gap-1 items-center">12:43</div>
+      <div className="chat-footer  text-xs flex gap-1 items-center">
+        {formattedTime}
+      </div>
     </div>
   );
 };
