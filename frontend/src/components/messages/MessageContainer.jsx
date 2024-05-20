@@ -34,7 +34,7 @@ const NoChatSelected = () => {
   const { userInfo } = useSelector((state) => state.auth);
   return (
     <div className="flex items-center justify-center w-full h-full">
-      <div className="px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex-col items-center gap-2">
+      <div className="px-4 text-center sm:text-lg md:text-xl text-gray-700 font-semibold flex-col items-center gap-2 ">
         <p>Hey, {userInfo.fullName}! 👋</p>
         <p>Select a chat to start conversation</p>
         <div className="flex justify-center">
