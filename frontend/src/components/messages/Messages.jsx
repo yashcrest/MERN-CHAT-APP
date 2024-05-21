@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +7,11 @@ import MessageSkeleton from "./MessageSkeleton";
 
 const Messages = () => {
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
+  });
 
   const {
     data: messages,
@@ -25,7 +30,11 @@ const Messages = () => {
     );
   } else if (!isFetching && messages.length > 0) {
     content = messages.map((message) => {
-      return <Message key={message._id} message={message} />;
+      return (
+        <div key={message._id} ref={lastMessageRef}>
+          <Message message={message} />
+        </div>
+      );
     });
   } else if (isError) {
     toast.error(error?.data?.message || error.error);

@@ -5,3 +5,7 @@
 .reg-error-msg {
   @apply text-red-800;
 }
+
+.body {
+  @apply bg-gray-50 dark:bg-gray-900;
+}
