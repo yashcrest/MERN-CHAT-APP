@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ThemeProvider } from "./contexts/themeContext.jsx";
+import { SocketContextProvider } from "./contexts/SocketContext.jsx";
 
 //wrapping up App componenet inside of BrowserRouter
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -15,11 +16,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <ToastContainer />
       <BrowserRouter>
-        <ThemeProvider>
-          <Routes>
-            <Route path="/*" element={<App />} />
-          </Routes>
-        </ThemeProvider>
+        <SocketContextProvider>
+          <ThemeProvider>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </ThemeProvider>
+        </SocketContextProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
