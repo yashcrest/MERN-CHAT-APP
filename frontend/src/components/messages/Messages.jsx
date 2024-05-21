@@ -15,6 +15,7 @@ const Messages = () => {
 
   const {
     data: messages,
+    isLoading,
     isFetching,
     isSuccess,
     isError,
@@ -22,13 +23,13 @@ const Messages = () => {
   } = useGetMessagesQuery(selectedMessage._id);
 
   let content;
-  if (isFetching) {
+  if (isLoading) {
     content = [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />);
   } else if (!isFetching && messages.length === 0) {
     content = (
       <p className="text-center">Send a message to start the conversation</p>
     );
-  } else if (!isFetching && messages.length > 0) {
+  } else if (!isLoading && messages.length > 0) {
     content = messages.map((message) => {
       return (
         <div key={message._id} ref={lastMessageRef}>
