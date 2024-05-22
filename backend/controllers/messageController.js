@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Conversation from "../models/conversationModel.js";
 import Message from "../models/messageModel.js";
+import { getReceiverSocketId } from "../socket/socket.js";
 
 // @desc     Send Message
 // route     POST api/messages/send/:id
@@ -44,6 +45,13 @@ const sendMessage = asyncHandler(async (req, res) => {
 
     // saving the conversation and messages into mongoDB
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    //  socket IO functionality
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      // io.to(<socket_id>.emit() is used to send  events to specific client)
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {

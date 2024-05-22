@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedMessage } from "../../redux/action/messagesSlice";
+import { useSocketContext } from "../../contexts/SocketContext";
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
   const dispatch = useDispatch();
   const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(conversation._id);
 
   let isSelected = selectedMessage?._id === conversation._id;
 
@@ -17,7 +20,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
         onClick={() => dispatch(setSelectedMessage(conversation))}
       >
         {/* avatar */}
-        <div className="avatar online">
+        <div className={`avatar ${isOnline ? "online" : ""}`}>
           <div className="w-12 rounded-full">
             <img src={conversation.profilePic} alt="profile pic" />
           </div>

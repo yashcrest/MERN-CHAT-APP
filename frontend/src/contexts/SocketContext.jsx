@@ -1,6 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
+
 export const SocketContext = createContext();
 
 export const SocketContextProvider = ({ children }) => {
@@ -10,14 +11,14 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (userInfo) {
-      const socket = io("http://localhost:3000", {
+      const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
         query: {
-          userId: userInfo._id,
+          userId: userInfo._id, //sending this info to backend to verify who are online
         },
       });
       setSocket(socket);
 
-      // socket.on() is used to listen to the events. can be used both on client and server side
+      // socket.on() is used to listen to the events. can be used both on client and server side. "getOnlineUsers" is the event that is being emitted from backend
       socket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
@@ -31,8 +32,10 @@ export const SocketContextProvider = ({ children }) => {
     }
   }, [userInfo]);
   return (
-    <SocketContext.Provider value={(socket, onlineUsers)}>
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}
     </SocketContext.Provider>
   );
 };
+
+export const useSocketContext = () => useContext(SocketContext);

@@ -13,10 +13,14 @@ import messagesRoutes from "./routes/messagesRoutes.js";
 //variables
 const port = process.env.PORT || 3000;
 
+//load config
+// dotenv.config({ path: "./config/.env" });
+dotenv.config();
+
 //cors middleware
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -49,5 +53,5 @@ app.use(errorHandler);
 //starting server
 server.listen(port, () => {
   console.log(`server running on port ${port}`);
-  console.log(process.env.FRONTEND_URL);
+  console.log("frontend connection coming from: ", process.env.FRONTEND_URL);
 });
