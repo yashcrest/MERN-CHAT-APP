@@ -1,4 +1,4 @@
-# Chat Application (Socket.io) - [Under development]
+# React-RTK-Tailwind-Node-Chat-App - [Under development]
 
 Project Structure:
 
