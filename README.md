@@ -1,4 +1,4 @@
-# React-RTK-Tailwind-Node-Chat-App - [Under development]
+# React-RTKQuery-Tailwind-Node-ChatApp - [Under development]
 
 Project Structure:
 
