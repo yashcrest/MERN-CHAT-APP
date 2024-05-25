@@ -1,10 +1,8 @@
 // this slice is dedicated to make backend api calls for sending users login details
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { toast } from "react-toastify";
 const users_EndPoint = "/users"; //the rest of the URL is coming from vite.config.js
 const messages_EndPoint = "/messages";
 const sideBarconversation_EndPoint = "/sidebarconversations";
-import io from "socket.io-client";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
