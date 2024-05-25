@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { useGetMessagesQuery } from "../../redux/action/apiSlice";
+import { apiSlice, useGetMessagesQuery } from "../../redux/action/apiSlice";
 import MessageSkeleton from "./MessageSkeleton";
+import { useSocketContext } from "../../contexts/SocketContext";
 
 const Messages = () => {
+  const { socket } = useSocketContext;
   const { selectedConversation } = useSelector(
     (state) => state.selectedConversation
   );
@@ -24,6 +26,27 @@ const Messages = () => {
     isError,
     error,
   } = useGetMessagesQuery(selectedConversation._id);
+
+  useEffect(() => {
+    if (selectedConversation?._id && socket) {
+      socket.emit("join", selectedConversation._id);
+
+      socket.on("newMessage", (newMessage) => {
+        if (newMessage.conversationId === selectedConversation._id) {
+          apiSlice.util.updateQueryData(
+            "getMessages",
+            selectedConversation._id,
+            (draft) => {
+              draft.puhs(newMessage);
+            }
+          );
+        }
+      });
+      return () => {
+        socket.off("newMessage");
+      };
+    }
+  }, [selectedConversation, socket]);
 
   let content;
   if (isLoading) {

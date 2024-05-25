@@ -40,32 +40,6 @@ export const apiSlice = createApi({
       query: (conversationId) => ({
         url: `${messages_EndPoint}/${conversationId}`,
       }),
-      // async onCacheEntryAdded(
-      //   id,
-      //   { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
-      // ) {
-      //   const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
-      //     query: { userId: id },
-      //   });
-
-      //   try {
-      //     await cacheDataLoaded;
-      //     const listner = (event) => {
-      //       const data = JSON.parse(event.data);
-      //       if (data.channel !== id) return;
-
-      //       updateCachedData((draft) => {
-      //         draft.push(data);
-      //       });
-      //     };
-      //     socket.on("newMessage", listner);
-      //   } catch (error) {
-      //     toast.error(error?.data?.message || error.error);
-      //   }
-      //   await cacheEntryRemoved;
-      //   socket.close();
-      // },
-      //this is to store data in cache
       providesTags: (result, error, id) => [{ type: "Messages", id: "LIST" }],
     }),
 
