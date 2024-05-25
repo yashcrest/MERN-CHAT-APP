@@ -1,26 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedMessage: localStorage.getItem("selectedMessage")
-    ? JSON.parse(localStorage.getItem("selectedMessage"))
+  selectedConversation: localStorage.getItem("selectedConversation")
+    ? JSON.parse(localStorage.getItem("selectedConversation"))
     : null,
-
-  sendMessage: null,
 };
 
 const messageSlice = createSlice({
   name: "message",
   initialState,
   reducers: {
-    setSelectedMessage: (state, action) => {
-      state.selectedMessage = action.payload;
-      localStorage.setItem("selectedMessage", JSON.stringify(action.payload));
-    },
-    setSendMessage: (state, action) => {
-      state.sendMessage = action.payload;
+    setSelectedConversation: (state, action) => {
+      state.selectedConversation = action.payload;
+      localStorage.setItem(
+        "selectedConversation",
+        JSON.stringify(action.payload)
+      );
     },
   },
 });
 
 export default messageSlice.reducer;
-export const { setSelectedMessage, setSendMessage } = messageSlice.actions;
+export const { setSelectedConversation } = messageSlice.actions;

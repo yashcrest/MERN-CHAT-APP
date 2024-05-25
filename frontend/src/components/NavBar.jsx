@@ -6,7 +6,8 @@ import { useTheme } from "../contexts/themeContext";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../redux/action/apiSlice";
 import { logOut } from "../redux/action/authSlice";
-import { setSelectedMessage } from "../redux/action/messagesSlice";
+import { setSelectedConversation } from "../redux/action/messagesSlice";
+import { toast } from "react-toastify";
 const NavBar = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const [isToggled, setIsToggled] = useState(false);
@@ -21,11 +22,11 @@ const NavBar = () => {
     try {
       await logoutApiCall().unwrap(); // this is for calling the backend to logout the user
       dispatch(logOut()); // this is for clearing users login details from localStorage
-      dispatch(setSelectedMessage(null));
-      localStorage.removeItem("selectedMessage");
+      dispatch(setSelectedConversation(null));
+      localStorage.removeItem("selectedConversation");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error(error?.data?.message || error.error);
     }
   };
 

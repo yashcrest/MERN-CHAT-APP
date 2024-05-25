@@ -5,11 +5,13 @@ import MessageInput from "./MessageInput";
 import { PiChatsDuotone } from "react-icons/pi";
 
 const MessageContainer = () => {
-  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { selectedConversation } = useSelector(
+    (state) => state.selectedConversation
+  );
 
   return (
     <div className="md:min-w-[450px] flex flex-col overflow-auto">
-      {!selectedMessage ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
@@ -17,7 +19,7 @@ const MessageContainer = () => {
           <div className="bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text">Too: </span>{" "}
             <span className="text-gray-900 font-bold">
-              {selectedMessage.fullName}
+              {selectedConversation.fullName}
             </span>
           </div>
           <Messages />

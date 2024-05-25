@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useSendMessageMutation } from "../../redux/action/apiSlice";
 import { BiSend } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
-  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { selectedConversation } = useSelector(
+    (state) => state.selectedConversation
+  );
   const [sendMessage, { isLoading }] = useSendMessageMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (!message) return;
-      await sendMessage({ id: selectedMessage._id, message }).unwrap();
+      await sendMessage({ id: selectedConversation._id, message }).unwrap();
       setMessage("");
     } catch (error) {
-      toast.error(err?.data?.message || err.error);
+      toast.error(error?.data?.message || error.error);
     }
   };
 

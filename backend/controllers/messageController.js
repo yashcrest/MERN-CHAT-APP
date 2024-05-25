@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import Conversation from "../models/conversationModel.js";
 import Message from "../models/messageModel.js";
-import { getReceiverSocketId } from "../socket/socket.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 // @desc     Send Message
 // route     POST api/messages/send/:id

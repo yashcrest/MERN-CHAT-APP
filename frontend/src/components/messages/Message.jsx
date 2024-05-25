@@ -6,12 +6,14 @@ const Message = ({ message }) => {
   // formatted time for message
   const formattedTime = extractTime(message.createdAt);
   const { userInfo } = useSelector((state) => state.auth);
-  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { selectedConversation } = useSelector(
+    (state) => state.selectedConversation
+  );
   const loggedInUser = message.senderId === userInfo._id;
   const chatClassName = loggedInUser ? "chat-end" : "chat-start";
   const profilePic = loggedInUser
     ? userInfo.profilePic
-    : selectedMessage?.profilePic;
+    : selectedConversation?.profilePic;
 
   const bubbleBgColor = loggedInUser ? "bg-blue-500" : "";
   return (

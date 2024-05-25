@@ -13,7 +13,7 @@ export const SocketContextProvider = ({ children }) => {
     if (userInfo) {
       const socket = io(`${import.meta.env.VITE_BACKEND_URL}`, {
         query: {
-          userId: userInfo._id, //sending this info to backend to verify who are online
+          userId: userInfo._id, //sending the current logged in userID to backend to set him up online.
         },
       });
       setSocket(socket);

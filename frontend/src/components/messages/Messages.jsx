@@ -1,12 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useGetMessagesQuery } from "../../redux/action/apiSlice";
 import MessageSkeleton from "./MessageSkeleton";
 
 const Messages = () => {
-  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { selectedConversation } = useSelector(
+    (state) => state.selectedConversation
+  );
+
   const lastMessageRef = useRef();
 
   useEffect(() => {
@@ -20,7 +23,7 @@ const Messages = () => {
     isSuccess,
     isError,
     error,
-  } = useGetMessagesQuery(selectedMessage._id);
+  } = useGetMessagesQuery(selectedConversation._id);
 
   let content;
   if (isLoading) {

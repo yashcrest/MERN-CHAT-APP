@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedMessage } from "../../redux/action/messagesSlice";
+import { setSelectedConversation } from "../../redux/action/messagesSlice";
 import { useSocketContext } from "../../contexts/SocketContext";
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
   const dispatch = useDispatch();
-  const { selectedMessage } = useSelector((state) => state.selectedMessage);
+  const { selectedConversation } = useSelector(
+    (state) => state.selectedConversation
+  );
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation._id);
 
-  let isSelected = selectedMessage?._id === conversation._id;
+  let isSelected = selectedConversation?._id === conversation._id;
 
   return (
     <>
@@ -17,7 +19,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
         className={`flex items-center gap-2 hover:bg-sky-400 dark:hover:text-black rounded p-2 py-1 cursor-pointer ${
           isSelected ? "bg-sky-600" : ""
         }`}
-        onClick={() => dispatch(setSelectedMessage(conversation))}
+        onClick={() => dispatch(setSelectedConversation(conversation))}
       >
         {/* avatar */}
         <div className={`avatar ${isOnline ? "online" : ""}`}>
