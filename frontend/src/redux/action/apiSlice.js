@@ -6,7 +6,7 @@ const sideBarconversation_EndPoint = "/sidebarconversations";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://chatappbackend-1.azurewebsites.net/api",
+    baseUrl: "/api",
     credentials: "include",
   }),
   tagTypes: ["User", "Messages", "Conversation"],
