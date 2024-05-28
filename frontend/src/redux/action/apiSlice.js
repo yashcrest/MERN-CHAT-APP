@@ -6,7 +6,7 @@ const sideBarconversation_EndPoint = "/sidebarconversations";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api",
+    baseUrl: import.meta.env.VITE_BACKEND_URL,
     credentials: "include",
   }),
   tagTypes: ["User", "Messages", "Conversation"],

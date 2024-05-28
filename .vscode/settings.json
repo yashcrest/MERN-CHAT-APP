@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/2e65b425-f588-4f04-97bc-8a9bc3ae326d/resourceGroups/chatAppBackend-1/providers/Microsoft.Web/sites/chatAppBackend-1",
+  "appService.deploySubpath": "backend"
+}
