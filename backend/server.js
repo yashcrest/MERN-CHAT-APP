@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config();
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
 import connectDB from "./config/db.js";
@@ -10,12 +11,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 
-//variables
 const port = process.env.PORT || 3000;
-
-//load config
-// dotenv.config({ path: "./config/.env" });
-dotenv.config();
 
 //cors middleware
 app.use(
@@ -26,9 +22,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-//load config
-dotenv.config({ path: "./config/.env" });
 
 // middlewares
 app.use(express.json());
