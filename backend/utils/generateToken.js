@@ -6,8 +6,8 @@ const generateToken = (res, userId) => {
     expiresIn: "30d",
   });
   res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: false,
+    httpOnly: false,
+    secure: true,
     sameSite: "strict",
     maxAge: 30 * 24 * 60 * 60, //30 days
   });
