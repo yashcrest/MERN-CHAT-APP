@@ -1,3 +1,5 @@
+//this file will affect your production env
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
