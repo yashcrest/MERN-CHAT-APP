@@ -13,6 +13,8 @@ import messagesRoutes from "./routes/messagesRoutes.js";
 
 const port = process.env.PORT || 3000;
 
+console.log("frontend URL: ", process.env.FRONTEND_URL);
+
 //cors middleware
 app.use(
   cors({
