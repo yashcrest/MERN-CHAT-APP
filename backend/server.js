@@ -18,7 +18,7 @@ console.log("frontend URL: ", process.env.FRONTEND_URL);
 //cors middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://chatapp.yashcrest.com",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
