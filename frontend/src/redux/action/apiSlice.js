@@ -8,7 +8,7 @@ console.log("backend url:", import.meta.env.VITE_BACKEND_URL);
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api`,
+    baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/test`,
     credentials: "include",
   }),
   tagTypes: ["User", "Messages", "Conversation"],
