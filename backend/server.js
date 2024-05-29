@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "config/.env" });
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
 import connectDB from "./config/db.js";
