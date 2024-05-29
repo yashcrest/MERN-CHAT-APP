@@ -29,6 +29,7 @@ const authUser = asyncHandler(async (req, res) => {
       profilePic: user.profilePic,
     });
     console.log("user sent valid creds");
+    console.log("cookie sende from frontend", req.cookies);
   } else {
     res.status(401);
     throw new Error("Invalid username or password");
