@@ -18,18 +18,12 @@ console.log("frontend URL: ", process.env.FRONTEND_URL);
 //cors middleware
 app.use(
   cors({
-    origin: "https://chatapp.yashcrest.com",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-// Middleware to set Access-Control-Allow-Credentials header
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
 
 // middlewares
 app.use(express.json());
