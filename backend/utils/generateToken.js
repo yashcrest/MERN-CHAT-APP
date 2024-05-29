@@ -5,6 +5,7 @@ const generateToken = (res, userId) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
+  console.log("token generated in backend:", token);
   res.cookie("jwt", token, {
     httpOnly: false,
     secure: true,
