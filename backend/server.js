@@ -14,6 +14,7 @@ import messagesRoutes from "./routes/messagesRoutes.js";
 const port = process.env.PORT || 3000;
 
 console.log("frontend URL: ", process.env.FRONTEND_URL);
+console.log("test token:");
 
 //cors middleware
 app.use(
