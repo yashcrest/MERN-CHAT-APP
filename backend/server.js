@@ -43,6 +43,12 @@ app.use(cookieParser()); // this allows us to access jwt from request object i.e
 // /api/users route middleware (this route logic is handled in userRoutes.js file)
 app.use("/api/users", authRoutes);
 
+//checking the cookie send from frontend
+app.use((req, res, next) => {
+  console.log("Cookies sent from frontend", req.cookies);
+  next();
+});
+
 // for messages routes
 app.use("/api/messages", messagesRoutes);
 
