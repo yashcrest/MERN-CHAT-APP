@@ -8,7 +8,7 @@ console.log(import.meta.env.VITE_BACKEND_URL);
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://chatappbackend-1.azurewebsites.net/api/users/auth/api",
+    baseUrl: "https://chatappbackend-1.azurewebsites.net/api/",
     credentials: "include",
   }),
   tagTypes: ["User", "Messages", "Conversation"],
