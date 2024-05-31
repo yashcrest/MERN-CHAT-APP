@@ -7,6 +7,7 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   server: {
+    // proxy is only used in dev server
     proxy: {
       // anytime we call /api to our backend the target is defined already from here.
       "/api": {
