@@ -14,9 +14,9 @@
 - use formik in login page too ✅
 - send data from login page into redux store ✅
 - clear user login form if invalid username and password has been entered. ✅
-- after logged in do not route to login page when clicked on "chat app" on navbar.
-- built logout logic.
-- built profile and logout route.
+- after logged in do not route to login page when clicked on "chat app" on navbar.✅
+- built logout logic.✅
+- built profile and logout route.✅
 
 ### Notes
 
