@@ -11,7 +11,7 @@ const Register = () => {
   const dispatch = useDispatch();
 
   //getting register mutation from authApiSlice
-  const [register] = useRegisterMutation();
+  const [register, { isLoading }] = useRegisterMutation();
   const navigate = useNavigate();
 
   // formik reusable labels and inputs
@@ -96,13 +96,17 @@ const Register = () => {
                   className="input mb-5 bg-neutral-300 dark:bg-slate-50"
                   placeholder="Confirm Password"
                 />
-                <button
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  Submit
-                </button>
+                {isLoading ? (
+                  <div className="loading loading-spinner mx-auto"></div>
+                ) : (
+                  <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                )}
                 <div className="dark:text-gray-50 mt-2  text-center hover:underline inline-block hover:text-blue-700 dark:hover:text-blue-300">
                   <p>
                     <Link to="/login">Already have account? Login</Link>
