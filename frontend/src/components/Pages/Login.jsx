@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // using userLoginMutation to pass value to redux
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   //formik labels and inputs
   const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -73,13 +73,18 @@ const Login = () => {
                   type="password"
                   className="input mb-5 bg-neutral-300 dark:bg-slate-50 dark:text-black"
                 />
-                <button
-                  disabled={isSubmitting}
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                >
-                  Login
-                </button>
+                {isLoading ? (
+                  <div className="loading loading-spinner mx-auto"></div>
+                ) : (
+                  <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                  >
+                    Login
+                  </button>
+                )}
+
                 <div className="dark:text-gray-50 mt-2 hover:underline inline-block hover:text-blue-700 dark:hover:text-blue-300">
                   <p>
                     <Link to="/register"> Don't have an account? Register</Link>
