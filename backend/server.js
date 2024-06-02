@@ -12,6 +12,8 @@ import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 
 const port = process.env.PORT || 3000;
+app.use(cookieParser()); // this allows us to access jwt from request object i.e. req.cookies.jwt (ref authMiddleware.js file)
+// /api/users route middleware (this route logic is handled in userRoutes.js file)
 
 //cors middleware
 app.use(
@@ -39,8 +41,6 @@ app.use((req, res, next) => {
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); // this allows us to access jwt from request object i.e. req.cookies.jwt (ref authMiddleware.js file)
-// /api/users route middleware (this route logic is handled in userRoutes.js file)
 app.use("/api/users", authRoutes);
 
 //checking the cookie set by generateCookie() function
