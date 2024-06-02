@@ -10,7 +10,7 @@ const generateToken = (res, userId) => {
     httpOnly: true,
     sameSite: "none",
     secure: true,
-    maxAge: 30 * 24 * 60 * 60, //30 days
+    maxAge: 24 * 60 * 60, //30 days
   });
 };
 
