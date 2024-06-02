@@ -10,6 +10,7 @@ const sendMessage = asyncHandler(async (req, res) => {
   try {
     const { message } = req.body;
     const { id: receiverId } = req.params;
+    console.log("cookie send from frontend", req.cookies);
 
     // need to get sender id
     const senderId = req.user._id;
