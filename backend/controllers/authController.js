@@ -14,7 +14,7 @@ import generateToken from "../utils/generateToken.js";
 const authUser = asyncHandler(async (req, res) => {
   //explaination above
   const { username, password } = req.body;
-  console.log("cookie send from frontend", req.cookies);
+  console.log("cookie send from frontend", req.signedCookies);
 
   //comparing the user details in DB
   const user = await userDetails.findOne({ username });

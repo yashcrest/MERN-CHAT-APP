@@ -5,6 +5,7 @@ import asyncHandler from "express-async-handler";
 import userDetails from "../models/userModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
+  console.log("cookies: ", { ...req.cookies });
   try {
     const token = req.cookies.jwt;
 
