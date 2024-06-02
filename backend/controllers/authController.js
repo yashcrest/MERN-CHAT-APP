@@ -85,9 +85,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // route     POST api/users/logout
 // @access   Private
 const logoutUser = asyncHandler(async (req, res) => {
-  console.log("Cookie sent from backend", req.cookies);
   res.cookie("jwt", "", {
     httpOnly: true,
+    secure: true,
+    sameSite: "None",
     expires: new Date(0),
   });
 
