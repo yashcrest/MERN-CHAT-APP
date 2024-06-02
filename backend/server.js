@@ -43,21 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", authRoutes);
 
-//checking the cookie set by generateCookie() function
-app.use((req, res, next) => {
-  res.on("header", () => {
-    console.log("checking cookie");
-    console.log(res.getHeaders()["set-cookie"]);
-  });
-  next();
-});
-
-//checking the cookie send from frontend
-app.use((req, res, next) => {
-  console.log("Cookies sent from frontend", req.cookies);
-  next();
-});
-
 // for messages routes
 app.use("/api/messages", messagesRoutes);
 
