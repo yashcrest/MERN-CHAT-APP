@@ -4,7 +4,7 @@ const users_EndPoint = "/users"; //the rest of the URL is coming from vite.confi
 const messages_EndPoint = "/messages";
 const sideBarconversation_EndPoint = "/sidebarconversations";
 
-console.log("backend url:", import.meta.env.VITE_BACKEND_URL);
+// console.log("backend url:", import.meta.env.VITE_BACKEND_URL);
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
