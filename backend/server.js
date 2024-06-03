@@ -12,6 +12,7 @@ import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 
 const port = process.env.PORT || 3000;
+const host = "0.0.0.0";
 app.use(cookieParser());
 
 //cors middleware
@@ -27,6 +28,7 @@ app.use(
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/users", authRoutes);
 
 // for messages routes
