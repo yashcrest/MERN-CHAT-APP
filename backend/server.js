@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({
     message:
-      "this is a API service, please make a request from the POST for testing or from https://chatapp.yashshrestha.net",
+      "this is an API service, please make a request from the POST for testing or from https://chatapp.yashshrestha.net",
   });
 });
 
