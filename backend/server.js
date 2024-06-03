@@ -12,13 +12,12 @@ import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 
 const port = process.env.PORT || 3000;
-const host = "0.0.0.0";
 app.use(cookieParser());
 
 //cors middleware
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
