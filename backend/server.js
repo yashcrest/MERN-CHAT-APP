@@ -29,6 +29,13 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.json({
+    message:
+      "this is a API service, please make a request from the POST for testing or from https://chatapp.yashshrestha.net",
+  });
+});
+
 app.use("/api/users", authRoutes);
 
 // for messages routes
