@@ -13,6 +13,7 @@ const Login = () => {
 
   // using userLoginMutation to pass value to redux
   const [login, { isLoading }] = useLoginMutation();
+
   //formik labels and inputs
   const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -42,7 +43,7 @@ const Login = () => {
               try {
                 const res = await login({ ...values }).unwrap();
                 console.log({ res });
-                dispatch(setCredentials({ ...res }));
+                dispatch(setCredentials(res));
                 // not navigating there cause backend needs to sent proper token and session
                 navigate("/chat");
               } catch (err) {

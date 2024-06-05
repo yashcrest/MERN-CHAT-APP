@@ -13,6 +13,9 @@ const initialState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null,
+  token: localStorage.getItem("jwtToken")
+    ? JSON.parse(localStorage.getItem("jwtToken"))
+    : null,
 };
 
 const authSlice = createSlice({
@@ -21,11 +24,14 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
+      state.token = action.payload.token;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
+      localStorage.setItem("jwtToken", JSON.stringify(action.payload.token));
     },
     logOut: (state, action) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
+      localStorage.removeItem("jwtToken");
     },
   },
 });

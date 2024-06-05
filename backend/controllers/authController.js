@@ -19,13 +19,14 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await userDetails.findOne({ username });
   if (user && (await user.matchPassword(password))) {
     console.log("frontend URL: ", process.env.FRONTEND_URL);
-    generateToken(res, user._id);
+    const token = generateToken(res, user._id);
     res.json({
       _id: user._id,
       fullName: user.fullName,
       username: user.username,
       email: user.email,
       profilePic: user.profilePic,
+      token,
     });
     console.log("user sent valid creds");
   } else {

@@ -12,6 +12,7 @@ const generateToken = (res, userId) => {
     secure: true,
     maxAge: 24 * 60 * 60, //30 days
   });
+  return token;
 };
 
 export default generateToken;
