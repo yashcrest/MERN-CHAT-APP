@@ -12,12 +12,6 @@ const Messages = () => {
     (state) => state.selectedConversation
   );
 
-  const lastMessageRef = useRef();
-
-  useEffect(() => {
-    lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
-  });
-
   const {
     data: messages,
     isLoading,
@@ -26,6 +20,12 @@ const Messages = () => {
     isError,
     error,
   } = useGetMessagesQuery(selectedConversation._id);
+
+  const lastMessageRef = useRef();
+
+  useEffect(() => {
+    lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     if (selectedConversation?._id && socket) {
@@ -37,7 +37,7 @@ const Messages = () => {
             "getMessages",
             selectedConversation._id,
             (draft) => {
-              draft.puhs(newMessage);
+              draft.push(newMessage);
             }
           );
         }
@@ -46,7 +46,7 @@ const Messages = () => {
         socket.off("newMessage");
       };
     }
-  }, [selectedConversation, socket]);
+  }, [selectedConversation, socket, apiSlice.util]);
 
   let content;
   if (isLoading) {

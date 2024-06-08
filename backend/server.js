@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 dotenv.config({ path: "config/.env" });
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
@@ -10,30 +11,17 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
+import corsOptions from "./config/corsOptions.js";
 
 const port = process.env.PORT || 3000;
-app.use(cookieParser());
 
 //cors middleware
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors(corsOptions));
 
 // middlewares
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.get("/", (req, res) => {
-  res.json({
-    message:
-      "this is an API service, please make a request from the POST for testing or from https://chatapp.yashshrestha.net",
-  });
-});
 
 app.use("/api/users", authRoutes);
 
