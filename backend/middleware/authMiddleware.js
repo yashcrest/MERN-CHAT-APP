@@ -5,9 +5,9 @@ import asyncHandler from "express-async-handler";
 import userDetails from "../models/userModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
-  console.log("authMiddleware page, cookies sent from frontend: ", {
-    ...req.cookies,
-  });
+  // console.log("reqest from client ", req);
+  console.log("req.headers: ", req.headers);
+  console.log("req.cookies ", req.cookies);
   try {
     const token = req.cookies.jwt;
 

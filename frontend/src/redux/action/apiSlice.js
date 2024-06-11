@@ -4,16 +4,19 @@ const users_EndPoint = "/users"; //the rest of the URL is coming from vite.confi
 const messages_EndPoint = "/messages";
 const sideBarconversation_EndPoint = "/sidebarconversations";
 
+//socket io
+import { io } from "socket.io-client";
+
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api`,
     credentials: "include",
 
     //sending back jwt token to backend
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
       if (token) {
-        headers.set("authorization", `Bearer: ${token}`);
+        headers.set("authorization", `Bearer ${token}`);
       }
       return headers;
     },

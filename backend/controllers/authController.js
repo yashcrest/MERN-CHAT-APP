@@ -67,13 +67,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //checking if user is created successfully
   if (user) {
-    generateToken(res, user._id);
+    const token = generateToken(res, user._id);
     res.status(201).json({
       _id: user._id,
       fullName: user.fullName,
       username: user.username,
       email: user.email,
       profilePic: user.profilePic,
+      token,
     });
   } else {
     res.status(400);
