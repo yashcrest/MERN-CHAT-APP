@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api`,
-    baseUrl: "https://react-node-chat-app-atr1.onrender.com",
+    baseUrl: "https://react-node-chat-app-atr1.onrender.com/api",
     credentials: "include",
 
     //sending back jwt token to backend
