@@ -26,7 +26,7 @@ const authUser = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
       profilePic: user.profilePic,
-      token,
+      token: token,
     });
     console.log("user sent valid creds");
   } else {
@@ -74,7 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
       username: user.username,
       email: user.email,
       profilePic: user.profilePic,
-      token,
+      token: token,
     });
   } else {
     res.status(400);
