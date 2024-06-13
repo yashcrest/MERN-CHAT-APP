@@ -41,5 +41,4 @@ app.use(errorHandler);
 //starting server
 server.listen(port, () => {
   console.log(`server running on port ${port}`);
-  console.log("frontend connection coming from: ", process.env.FRONTEND_URL);
 });

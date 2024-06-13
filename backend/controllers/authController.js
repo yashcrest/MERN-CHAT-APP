@@ -18,7 +18,6 @@ const authUser = asyncHandler(async (req, res) => {
   //comparing the user details in DB
   const user = await userDetails.findOne({ username });
   if (user && (await user.matchPassword(password))) {
-    console.log("frontend URL: ", process.env.FRONTEND_URL);
     const token = generateToken(res, user._id);
     res.json({
       _id: user._id,
