@@ -1,6 +1,6 @@
 const allowedOrigins = [
   "https://chatapp.yashshrestha.net",
-  "https://chat-app-ochre-one.vercel.app/",
+  "https://chat-app-ochre-one.vercel.app",
   "http://localhost:5173",
 ];
 
