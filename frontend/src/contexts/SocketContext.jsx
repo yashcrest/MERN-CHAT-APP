@@ -16,6 +16,9 @@ export const SocketContextProvider = ({ children }) => {
           userId: userInfo._id, //sending the current logged in userID to backend to set him up online.
         },
         withCredentials: true,
+        extraHeaders: {
+          "Access-Control-Allow-Credentials": "true",
+        },
       });
       setSocket(socket);
 
