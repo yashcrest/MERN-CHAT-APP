@@ -7,10 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://chatapp.yashshrestha.net/chat", "http://localhost:5173"],
+    origin: ["https://chatapp.yashshrestha.net", "http://localhost:5173"],
     // origin: "https://chatapp.yashshrestha.net/chat",
     methods: ["GET", "POST"],
-    credentials: true,
+    // credentials: true,
   },
 });
 
