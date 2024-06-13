@@ -11,6 +11,7 @@ const io = new Server(server, {
     origin: "https://chatapp.yashshrestha.net",
     methods: ["GET", "POST"],
     credentials: true,
+    allowedHeaders: ["Access-Control-Allow-Credentials"],
   },
 });
 
