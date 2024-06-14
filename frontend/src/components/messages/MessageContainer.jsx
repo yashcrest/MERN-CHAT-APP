@@ -16,7 +16,7 @@ const MessageContainer = () => {
       ) : (
         <>
           {/* Header */}
-          <div className="bg-slate-500 px-4 py-2 mb-2">
+          <div className="bg-slate-200 dark:bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text">Too: </span>{" "}
             <span className="text-gray-900 font-bold">
               {selectedConversation.fullName}
@@ -37,10 +37,10 @@ const NoChatSelected = () => {
   return (
     <div className="flex items-center justify-center w-full h-full">
       <div className="px-4 text-center sm:text-lg md:text-xl text-gray-700 font-semibold flex-col items-center gap-2 ">
-        <p>Hey, {userInfo.fullName}! 👋</p>
-        <p>Select a chat to start conversation</p>
+        <p className="dark:text-white">Hey, {userInfo.fullName}! 👋</p>
+        <p className="dark:text-white">Select a chat to start conversation</p>
         <div className="flex justify-center">
-          <PiChatsDuotone className="text-3xl md:text-6xl" />
+          <PiChatsDuotone className="text-3xl md:text-6xl dark:text-white" />
         </div>
       </div>
     </div>

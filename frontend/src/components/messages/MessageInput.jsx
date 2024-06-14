@@ -27,7 +27,7 @@ const MessageInput = () => {
       <div className="w-full relative">
         <input
           type="text"
-          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 text-white"
+          className="outline-none text-sm rounded-lg block w-full p-2.5 bg-gray-300 dark:bg-gray-700  text-gray-900 dark:text-white"
           placeholder="Send a Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -39,7 +39,7 @@ const MessageInput = () => {
           {isLoading ? (
             <div className="loading loading-spinner"></div>
           ) : (
-            <BiSend />
+            <BiSend className="text-black dark:text-white" />
           )}
         </button>
       </div>

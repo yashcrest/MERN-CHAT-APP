@@ -53,7 +53,9 @@ const Messages = () => {
     content = [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />);
   } else if (!isFetching && messages.length === 0) {
     content = (
-      <p className="text-center">Send a message to start the conversation</p>
+      <p className="text-center dark:text-white">
+        Send a message to start the conversation
+      </p>
     );
   } else if (!isLoading && messages.length > 0) {
     content = messages.map((message) => {
