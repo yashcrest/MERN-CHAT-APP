@@ -54,13 +54,13 @@ const Messages = () => {
   if (isLoading) {
     content = [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />);
     // console.log(content);
-  } else if (!isFetching && messages.length === 0) {
+  } else if (!isFetching && messages?.length === 0) {
     content = (
       <p className="text-center dark:text-white">
         Send a message to start the conversation
       </p>
     );
-  } else if (!isLoading && messages.length > 0) {
+  } else if (!isLoading && messages?.length > 0) {
     content = messages.map((message) => {
       return (
         <div key={message._id} ref={lastMessageRef}>

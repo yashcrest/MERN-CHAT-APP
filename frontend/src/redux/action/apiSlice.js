@@ -7,6 +7,7 @@ const sideBarconversation_EndPoint = "/sidebarconversations";
 //test socketio import in this file itself
 import { io } from "socket.io-client";
 const socketUrl = import.meta.env.VITE_BACKEND_URL;
+const socket = io(socketUrl);
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
@@ -57,10 +58,11 @@ export const apiSlice = createApi({
         arg,
         { cacheDataLoaded, updateCachedData, cacheEntryRemoved }
       ) {
-        const socket = io(socketUrl);
+        // const socket = io(socketUrl);
         try {
           await cacheDataLoaded;
           socket.on("newMessage", (message) => {
+            console.log(message);
             updateCachedData((draft) => {
               draft.push(message);
             });
@@ -91,6 +93,7 @@ export const apiSlice = createApi({
         );
         try {
           await queryFulfilled;
+          socket.emit("newMessage", arg, arg.id);
         } catch (error) {
           // undo the optimistic update
           patchresult.undo();
