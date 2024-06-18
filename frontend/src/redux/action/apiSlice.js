@@ -4,8 +4,9 @@ const users_EndPoint = "/users"; //the rest of the URL is coming from vite.confi
 const messages_EndPoint = "/messages";
 const sideBarconversation_EndPoint = "/sidebarconversations";
 
-//socket io
+//test socketio import in this file itself
 import { io } from "socket.io-client";
+const socketUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
@@ -22,7 +23,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["User", "Messages", "Conversation"],
+  tagTypes: ["Messages"],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (credentials) => ({
@@ -51,7 +52,25 @@ export const apiSlice = createApi({
       query: (conversationId) => ({
         url: `${messages_EndPoint}/${conversationId}`,
       }),
-      providesTags: (result, error, id) => [{ type: "Messages", id: "LIST" }],
+      providesTags: ["Messages"],
+      async onCacheEntryAdded(
+        arg,
+        { cacheDataLoaded, updateCachedData, cacheEntryRemoved }
+      ) {
+        const socket = io(socketUrl);
+        try {
+          await cacheDataLoaded;
+          socket.on("newMessage", (message) => {
+            updateCachedData((draft) => {
+              draft.push(message);
+            });
+          });
+        } catch (error) {
+          console.log(error);
+        }
+        await cacheEntryRemoved;
+        socket.close();
+      },
     }),
 
     sendMessage: builder.mutation({
@@ -60,8 +79,25 @@ export const apiSlice = createApi({
         method: "POST",
         body: { message },
       }),
+      invalidatesTags: ["Messages"],
+      // implementaion not finished (need to figure out what should the value of arg should be)
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        //optimistic update to the UI messages
+        const patchresult = dispatch(
+          apiSlice.util.updateQueryData("getMessages", arg, (draft) => {
+            draft.push(arg);
+            // Object.assign(draft, sendMessage);
+          })
+        );
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          // undo the optimistic update
+          patchresult.undo();
+        }
+      },
       // this is to invalidate the cache data
-      invalidatesTags: [{ type: "Messages", id: "LIST" }],
+      // invalidatesTags: [{ type: "Messages", id: "LIST" }],
     }),
   }),
 });

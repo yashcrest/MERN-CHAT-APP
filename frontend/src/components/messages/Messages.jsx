@@ -16,10 +16,14 @@ const Messages = () => {
     data: messages,
     isLoading,
     isFetching,
-    isSuccess,
     isError,
     error,
-  } = useGetMessagesQuery(selectedConversation._id);
+  } = useGetMessagesQuery(
+    selectedConversation._id
+    //    {
+    //   refetchOnMountOrArgChange: true,
+    // }
+  );
 
   const lastMessageRef = useRef();
 
@@ -27,30 +31,29 @@ const Messages = () => {
     lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
 
-  useEffect(() => {
-    if (selectedConversation?._id && socket) {
-      socket.emit("join", selectedConversation._id);
-
-      socket.on("newMessage", (newMessage) => {
-        if (newMessage.conversationId === selectedConversation._id) {
-          apiSlice.util.updateQueryData(
-            "getMessages",
-            selectedConversation._id,
-            (draft) => {
-              draft.push(newMessage);
-            }
-          );
-        }
-      });
-      return () => {
-        socket.off("newMessage");
-      };
-    }
-  }, [selectedConversation, socket, apiSlice.util]);
+  // useEffect(() => {
+  //   if (selectedConversation?._id && socket) {
+  //     socket.on("newMessage", (newMessage) => {
+  //       if (newMessage.conversationId === selectedConversation._id) {
+  //         apiSlice.util.updateQueryData(
+  //           "getMessages",
+  //           selectedConversation._id,
+  //           (draft) => {
+  //             draft.push(newMessage);
+  //           }
+  //         );
+  //       }
+  //     });
+  //     return () => {
+  //       socket.off("newMessage");
+  //     };
+  //   }
+  // }, [selectedConversation, socket, apiSlice.util]);
 
   let content;
   if (isLoading) {
     content = [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />);
+    // console.log(content);
   } else if (!isFetching && messages.length === 0) {
     content = (
       <p className="text-center dark:text-white">

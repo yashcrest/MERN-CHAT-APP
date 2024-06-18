@@ -6,8 +6,8 @@ import userDetails from "../models/userModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
   // console.log("reqest from client ", req);
-  console.log("req.headers: ", req.headers);
-  console.log("req.cookies ", req.cookies);
+  // console.log("req.headers: ", req.headers);
+  // console.log("req.cookies ", req.cookies);
   try {
     const token = req.cookies.jwt;
 

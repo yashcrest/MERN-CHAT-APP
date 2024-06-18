@@ -9,6 +9,7 @@ import { getReceiverSocketId, io } from "../socket/socket.js";
 const sendMessage = asyncHandler(async (req, res) => {
   try {
     const { message } = req.body;
+    console.log("message send from frontend: ", message);
     const { id: receiverId } = req.params;
 
     // need to get sender id

@@ -5,6 +5,7 @@ import { BiSend } from "react-icons/bi";
 import { toast } from "react-toastify";
 
 const MessageInput = () => {
+  // send message field state
   const [message, setMessage] = useState("");
   const { selectedConversation } = useSelector(
     (state) => state.selectedConversation

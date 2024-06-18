@@ -14,16 +14,16 @@ import { SocketContextProvider } from "./contexts/SocketContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
-      <BrowserRouter>
-        <SocketContextProvider>
+      <SocketContextProvider>
+        <ToastContainer />
+        <BrowserRouter>
           <ThemeProvider>
             <Routes>
               <Route path="/*" element={<App />} />
             </Routes>
           </ThemeProvider>
-        </SocketContextProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </SocketContextProvider>
     </Provider>
   </React.StrictMode>
 );
