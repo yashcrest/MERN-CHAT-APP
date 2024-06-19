@@ -25,6 +25,10 @@ app.use(express.json());
 
 app.use("/api/users", authRoutes);
 
+app.get("/", (req, res) => {
+  res.json("working.");
+});
+
 // for messages routes
 app.use("/api/messages", messagesRoutes);
 
