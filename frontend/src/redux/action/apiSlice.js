@@ -99,8 +99,6 @@ export const apiSlice = createApi({
           patchresult.undo();
         }
       },
-      // this is to invalidate the cache data
-      // invalidatesTags: [{ type: "Messages", id: "LIST" }],
     }),
   }),
 });

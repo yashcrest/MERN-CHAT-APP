@@ -33,8 +33,8 @@ io.on("connection", (socket) => {
 
   // capturing new msg from frontend
   socket.on("newMessage", (data, id) => {
-    console.log("msg from frontend: ", data, id);
-    socket.to(id).emit("newMessage", data);
+    //emitting back this data to frontend
+    socket.broadcast.emit("newMessage", data);
   });
 
   //   socket.on() is used to listen to events. can be used on both client and server side
