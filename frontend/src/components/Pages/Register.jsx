@@ -70,30 +70,30 @@ const Register = () => {
                   name="fullName"
                   type="text"
                   placeholder="Full Name"
-                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  className="input mb-5 bg-neutral-300 dark:text-black dark:bg-slate-50"
                 />
                 <MyTextInput
                   name="username"
                   type="text"
                   placeholder="Username"
-                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  className="input mb-5 bg-neutral-300 dark:text-black dark:bg-slate-50"
                 />
                 <MyTextInput
                   name="email"
                   type="email"
                   placeholder="name@example.com "
-                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  className="input mb-5 bg-neutral-300 dark:text-black dark:bg-slate-50"
                 />
                 <MyTextInput
                   name="password"
                   type="password"
-                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  className="input mb-5 bg-neutral-300 dark:text-black dark:bg-slate-50"
                   placeholder="Password"
                 />
                 <MyTextInput
                   name="confirmPassword"
                   type="password"
-                  className="input mb-5 bg-neutral-300 dark:bg-slate-50"
+                  className="input mb-5 bg-neutral-300 dark:text-black dark:bg-slate-50"
                   placeholder="Confirm Password"
                 />
                 {isLoading ? (
