@@ -26,7 +26,7 @@ app.use(express.json());
 app.use("/api/users", authRoutes);
 
 app.get("/", (req, res) => {
-  res.json("working.");
+  res.json("API working. Please navigate to /api/users");
 });
 
 // for messages routes
