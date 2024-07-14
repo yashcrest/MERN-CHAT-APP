@@ -26,7 +26,10 @@ app.use(express.json());
 app.use("/api/users", authRoutes);
 
 app.get("/", (req, res) => {
-  res.json("API working. Please navigate to /api/users");
+  res.json({
+    message:
+      "API working. Please navigate to the frontend of this API, http://localhost:5173",
+  });
 });
 
 // for messages routes
