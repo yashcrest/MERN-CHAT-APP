@@ -1,4 +1,4 @@
-# Tools will be using
+# Tools Used
 
 `redux`
 `tailwind`
