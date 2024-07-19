@@ -8,7 +8,7 @@ Project Structure:
 **Running Project Locally**
 
 1. from root `cd backend` > `npm i` to install packages for backend
-2. `cd ../frontend` > `npm i` to installvpackages for frontend.
+2. `cd ../frontend` > `npm i` to install packages for frontend.
 3. `cd ../backend` > `npm run dev` to start both backend and frontend server at one go.
 4. Navigate to `localhost:5173` to access to frontend.
 
