@@ -43,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // checking if the user already exists
   const userEmailExists = await userDetails.findOne({ email });
   const userUsernameExists = await userDetails.findOne({ username });
-  if (userUsernameExists) {
+  if (userUsernameExists || userEmailExists) {
     res.status(400);
     throw new Error(
       "Don't register... we already have you in our DB. Just go back and sign in"
