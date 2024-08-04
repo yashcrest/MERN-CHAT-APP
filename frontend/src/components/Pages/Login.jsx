@@ -106,7 +106,9 @@ const Login = () => {
                     <FaGoogle className="text-xl" />
                   </button>
                   <span className="text-red-800 text-center">
-                    If you are using Safari, please access from another browser.
+                    If you are using Safari, please Go to Safari {">"}{" "}
+                    Preferences {">"} Privacy and uncheck Prevent cross-site
+                    tracking.
                   </span>
                 </Form>
               )}
