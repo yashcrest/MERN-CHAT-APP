@@ -1,4 +1,14 @@
-# React-rtkQuery-Tailwind-Node-ChatApp
+# Full Stack Chat Application
+
+Welcome to Emoji Chat App build in MERN stack! This repository hosts both the backend and frontend code for Emoji Chat application, designed to help users communicate in real time.
+
+<img width="1344" alt="image" src="https://github.com/user-attachments/assets/8947bc3c-5cc2-4917-94fb-b1b82a644986" />
+
+**Features**
+- Real time messaging : Instant communication with Websocket-powered updates.
+- Emoji Support: Add fun and emotions to your chats with emojis
+- Modern UI: A Sleek and responsive interface built with React and Material UI
+
 
 Project Structure:
 
