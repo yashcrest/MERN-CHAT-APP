@@ -13,7 +13,7 @@ import userRoutes from "./routes/userRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 import corsOptions from "./config/corsOptions.js";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 //cors middleware
 app.use(cors(corsOptions));

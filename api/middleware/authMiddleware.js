@@ -1,13 +1,8 @@
-// this is to protect our routes
-// we need the userID from the payload to verify the user
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import userDetails from "../models/userModel.js";
 
 const protect = asyncHandler(async (req, res, next) => {
-  // console.log("reqest from client ", req);
-  // console.log("req.headers: ", req.headers);
-  // console.log("req.cookies ", req.cookies);
   try {
     const token = req.cookies.jwt;
 
