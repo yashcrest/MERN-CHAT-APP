@@ -98,13 +98,6 @@ const Login = () => {
                       </Link>
                     </p>
                   </div>
-                  <div className="divider dark:text-white">
-                    <span>OR</span>
-                  </div>
-                  <button className="btn btn-primary my-1 flex">
-                    Sign with Google
-                    <FaGoogle className="text-xl" />
-                  </button>
                   <span className="text-red-800 text-center">
                     If you are using Safari, please Go to Safari {">"}{" "}
                     Preferences {">"} Privacy and uncheck Prevent cross-site
