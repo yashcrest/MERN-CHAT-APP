@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.reg-error-msg {
-  @apply text-red-800;
-}
-
 .body {
   @apply bg-gray-200 dark:bg-gray-900;
 }

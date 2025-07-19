@@ -7,7 +7,8 @@ const SearchInput = () => {
       <form className="flex items-center gap-2">
         <input
           type="text"
-          className="input input-bordered rounded-full dark:bg-gray-200"
+          className="input input-bordered rounded-full bg-gray-200 dark:bg-gray-200 text-black"
+          placeholder="Yash Shrestha"
         />
         <button type="submit" className="btn btn-circle bg-sky-500 text-white">
           <FaSearchengin size={20} />
