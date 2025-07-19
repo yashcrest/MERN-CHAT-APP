@@ -5,10 +5,10 @@ Welcome to Emoji Chat App build in MERN stack! This repository hosts both the ba
 <img width="1344" alt="image" src="https://github.com/user-attachments/assets/8947bc3c-5cc2-4917-94fb-b1b82a644986" />
 
 **Features**
+
 - Real time messaging : Instant communication with Websocket-powered updates.
 - Emoji Support: Add fun and emotions to your chats with emojis
 - Modern UI: A Sleek and responsive interface built with React and Material UI
-
 
 Project Structure:
 
@@ -17,9 +17,9 @@ Project Structure:
 
 **Running Project Locally**
 
-1. from root `cd backend` > `npm i` to install packages for backend
-2. `cd ../frontend` > `npm i` to install packages for frontend.
-3. `cd ../backend` > `npm run dev` to start both backend and frontend server at one go.
+1. from root `cd api` > `pnpm i` to install packages for backend
+2. `cd ../frontend` > `pnpm i` to install packages for frontend.
+3. `cd ../api` > `pnpm run dev` to start both backend and frontend server at one go.
 4. Navigate to `localhost:5173` to access to frontend.
 
 Package that made this possible : `concurrently`

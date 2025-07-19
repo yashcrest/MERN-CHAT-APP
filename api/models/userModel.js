@@ -1,7 +1,7 @@
 // in mongoDB we create the tables from the code itself which is this schema, rather than this logic being created in the databse in MySQL or postgres
 
 import { Schema, model } from "mongoose";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 const userDetailsSchema = new Schema(
   {
@@ -26,7 +26,7 @@ const userDetailsSchema = new Schema(
 
 //comparing passwords
 userDetailsSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  return await bcryptjs.compare(enteredPassword, this.password);
 };
 
 // saving a hashed password before sending it over to userController

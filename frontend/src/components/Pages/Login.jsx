@@ -40,7 +40,6 @@ const Login = () => {
                 password: "",
               }}
               validationSchema={loginValidationSchema}
-              // values is the values passed by formik form. i.e. values:values
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 try {
                   const res = await login({ ...values }).unwrap();
